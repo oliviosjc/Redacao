@@ -28,6 +28,10 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **Azure Service Bus**
 
+**Azure Storage**
+
+**Azure WebApp**
+
 **Identity Core**
 
 **Mediatr**
