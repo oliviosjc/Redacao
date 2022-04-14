@@ -14,6 +14,10 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **XUnit**
 
+**Hangfire**
+
+**RESTful**
+
 **Repository Pattern**
 
 **Unit Of Work Pattern**
