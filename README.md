@@ -8,6 +8,8 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **.NET Core** 
 
+**Docker**
+
 **CQRS and Notifications (Mediatr)**
 
 **Fluent Validation**
