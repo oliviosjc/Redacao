@@ -18,6 +18,8 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **XUnit**
 
+**Custom Exceptions**
+
 **Hangfire**
 
 **RESTful**
