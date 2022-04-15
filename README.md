@@ -50,4 +50,4 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **Dependency Injection**
 
-**Logger**
+**Serilog**
