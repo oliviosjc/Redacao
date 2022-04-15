@@ -10,6 +10,8 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **Docker**
 
+**.NET Core Background Services**
+
 **CQRS and Notifications (Mediatr)**
 
 **Fluent Validation**
