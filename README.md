@@ -39,7 +39,7 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **Azure Service Bus**
 
-**Azure Storage**
+**Azure Blob Storage**
 
 **Azure WebApp**
 
