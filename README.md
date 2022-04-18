@@ -10,6 +10,10 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **Docker**
 
+**Sql Server**
+
+**Redis**
+
 **.NET Core Background Services**
 
 **CQRS and Notifications (Mediatr)**
@@ -33,8 +37,6 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 **Swagger API**
 
 **Entity Framework Core**
-
-**SQL Server**
 
 **Azure Service Bus**
 
