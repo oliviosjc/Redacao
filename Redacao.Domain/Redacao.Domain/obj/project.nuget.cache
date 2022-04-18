@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "wfchkpNAm+yBg94g6vne+DRzfm5LZZ0HghKAfVd9lX7KtMzaEN4L0yS0tqCabyzaW/ZQ9Doysb2d4iW7Zn5Qdw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\olivi\\source\\repos\\Redacao\\Redacao.Domain\\Redacao.Domain\\Redacao.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\olivi\\.nuget\\packages\\fluentvalidation\\10.4.0\\fluentvalidation.10.4.0.nupkg.sha512",
+    "C:\\Users\\olivi\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.4.0\\fluentvalidation.aspnetcore.10.4.0.nupkg.sha512",
+    "C:\\Users\\olivi\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.4.0\\fluentvalidation.dependencyinjectionextensions.10.4.0.nupkg.sha512",
+    "C:\\Users\\olivi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
