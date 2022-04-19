@@ -13,6 +13,8 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **Redis**
 
+**SignalR**
+
 **.NET Core Background Services**
 
 **CQRS and Notifications (Mediatr)**
