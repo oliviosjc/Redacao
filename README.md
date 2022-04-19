@@ -19,6 +19,8 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **Fluent Validation**
 
+**Rest Sharp**
+
 **XUnit with MOQ**
 
 **Custom Exceptions**
