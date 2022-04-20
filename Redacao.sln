@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redacao.Data", "Redacao.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redacao.Infra", "Redacao.Infra\Redacao.Infra\Redacao.Infra.csproj", "{CE1F7677-21F2-4159-ABAF-5FB0A8A5E5F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redacao.Testes", "Redacao.Testes\Redacao.Testes.csproj", "{E2A6FDEC-88B1-4575-AA57-0D3E79EA1ABE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redacao.Testes", "Redacao.Testes\Redacao.Testes.csproj", "{E2A6FDEC-88B1-4575-AA57-0D3E79EA1ABE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
