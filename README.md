@@ -17,7 +17,7 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **.NET Core Background Services**
 
-**Injeção de dependências**
+**Healthchecks**
 
 **Middleware**
 
