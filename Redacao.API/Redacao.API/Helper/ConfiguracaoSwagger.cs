@@ -17,7 +17,7 @@ namespace Redacao.API.Helper
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Redacao",
-                    Description = "Bem vindo ao Swagger API da aplicaçaõ Redação.",
+                    Description = "Bem vindo ao Swagger API da aplicação Redação.",
                 });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

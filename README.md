@@ -1,54 +1,78 @@
 # Redação Application
 
-Olá Mundo, este repositório foi criado com o objetivo de construir uma aplicação resumindo boas práticas e conhecimentos que adquiri nos meus 5 anos de experiência como desenvolvedor .NET / C#
+Olá Mundo!
 
-Abaixo segue a lista de libs e frameworks utilizados .:
+Este repositório foi criado com o objetivo de construir uma aplicação resumindo boas práticas e conhecimentos que adquiri nos meus 5 anos de experiência como desenvolvedor.
+
+:. Abaixo segue a lista de tecnologias, bibliotecas e frameworks utilizados .:
 
 
-**.NET Core** 
+**Linguagem**  
+- 
 
-**Docker**
+**ASP.NET Core**
 
-**Sql Server**
+**C#**
+
+**Design Patterns**  
+- 
+**Data Driven Domain (DDD)**  
+
+**Repository Pattern**  
+
+**Unit of Work**
+
+**RESTful**  
+
+**SOLID**  
+
+**CQRS com Mediator**
+
+
+**Base de dados**  
+- 
+**ASP.NET Core Memory Storage**  
+
+**Microsoft SQL Server**
+
+**MongoDB**
 
 **Redis**
 
-**.NET Core Background Services**
-
-**CQRS and Notifications (Mediatr)**
-
-**Fluent Validation**
-
-**XUnit with MOQ**
-
-**Custom Exceptions**
-
-**Hangfire**
-
-**RESTful**
-
-**Repository Pattern**
-
-**Unit Of Work Pattern**
-
-**DDD Pattern**
-
-**Swagger API**
-
+**Frameworks**
+- 
 **Entity Framework Core**
-
-**Azure Service Bus**
-
-**Azure Storage**
-
-**Azure WebApp**
 
 **Identity Core**
 
-**Mediatr**
+**Dapper**
 
-**Memory Cache**
+**Bibliotecas**
+-
 
-**Dependency Injection**
+**ASP.NET Core Background Services**
+
+**ASP.NET Core Healthchecks**
+
+**Fluent Validation**
+
+**Swagger API**
+
+**Hangfire**
+
+**SignalR**
 
 **Serilog**
+
+**XUnit**
+
+**Mock**
+
+**Serviços de Núvem**
+-
+
+**Azure Service Bus**
+
+**Azure WebApp**
+
+**Azure Storage**
