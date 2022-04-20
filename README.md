@@ -41,6 +41,10 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **Entity Framework Core**
 
+**Dapper**
+
+**MongoDb**
+
 **Azure Service Bus**
 
 **Azure Blob Storage**
