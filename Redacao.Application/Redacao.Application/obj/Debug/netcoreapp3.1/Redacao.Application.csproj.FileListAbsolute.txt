@@ -10,3 +10,5 @@ C:\Users\olivi\source\repos\Redacao\Redacao.Application\Redacao.Application\obj\
 C:\Users\olivi\source\repos\Redacao\Redacao.Application\Redacao.Application\bin\Debug\netcoreapp3.1\Redacao.Domain.dll
 C:\Users\olivi\source\repos\Redacao\Redacao.Application\Redacao.Application\bin\Debug\netcoreapp3.1\Redacao.Domain.pdb
 C:\Users\olivi\source\repos\Redacao\Redacao.Application\Redacao.Application\obj\Debug\netcoreapp3.1\Redacao.Application.csproj.CopyComplete
+C:\Users\olivi\source\repos\Redacao\Redacao.Application\Redacao.Application\bin\Debug\netcoreapp3.1\Redacao.Infra.dll
+C:\Users\olivi\source\repos\Redacao\Redacao.Application\Redacao.Application\bin\Debug\netcoreapp3.1\Redacao.Infra.pdb

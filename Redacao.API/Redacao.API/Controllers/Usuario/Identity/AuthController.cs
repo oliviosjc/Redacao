@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Redacao.API.Controllers.Base;
 using Redacao.Application.Commands.Usuario.Identity;
 using Redacao.Application.Handlers.Usuario.Identity;
+using Redacao.Application.Queries.Usuario.Auth;
 using System;
 using System.Threading.Tasks;
 
@@ -93,6 +94,42 @@ namespace Redacao.API.Controllers.Usuario.Identity
             try
             {
                 var resultado = await _mediator.Send(command);
+
+                return await RetornoBase(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex.Message);
+                return await RetornoBase(ex);
+            }
+        }
+
+        [HttpGet("roles")]
+        public async Task<IActionResult> BuscarRoles()
+        {
+            try
+            {
+                BuscarTodasRolesQuery query = new BuscarTodasRolesQuery();
+
+                var resultado = await _mediator.Send(query);
+
+                return await RetornoBase(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex.Message);
+                return await RetornoBase(ex);
+            }
+        }
+
+        [HttpGet("usuario/roles")]
+        public async Task<IActionResult> BuscarRolesUsuario()
+        {
+            try
+            {
+                BuscarTodasRolesQuery query = new BuscarTodasRolesQuery();
+
+                var resultado = await _mediator.Send(query);
 
                 return await RetornoBase(resultado);
             }

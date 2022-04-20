@@ -19,15 +19,246 @@ namespace Redacao.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("Redacao.Domain.Entidades.Documento.DocumentoDocumento", b =>
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoPergunta", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<Guid>("AmazonS3Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("EObrigatoria")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TipoPergunta")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TipoRedacao")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.ToTable("AvaliacaoCorrecaoPerguntas");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoPerguntaResposta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("AvaliacaoCorrecaoPerguntaId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Valor")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AvaliacaoCorrecaoPerguntaId");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.ToTable("AvaliacaoCorrecaoPerguntaRespostas");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoRespostaProfessor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("AvaliacaoCorrecaoPerguntaRespostaId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RedacaoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Resposta")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AvaliacaoCorrecaoPerguntaRespostaId");
+
+                    b.HasIndex("RedacaoId");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.ToTable("AvaliacaoCorrecaoRespostaProfessores");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPergunta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("EObrigatoria")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TipoPergunta")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TipoRedacao")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.ToTable("AvaliacaoRedacaoPerguntas");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPerguntaResposta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("AvaliacaoRedacaoPerguntaId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Valor")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AvaliacaoRedacaoPerguntaId");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.ToTable("AvaliacaoRedacaoPerguntaRespostas");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoRespostaAluno", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("AvaliacaoRedacaoPerguntaRespostaId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RedacaoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Resposta")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AvaliacaoRedacaoPerguntaRespostaId");
+
+                    b.HasIndex("RedacaoId");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.ToTable("AvaliacaoRedacaoRespostaAlunos");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Documento.DocumentoDocumento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
@@ -43,13 +274,15 @@ namespace Redacao.Data.Migrations
                     b.Property<DateTime?>("ModificadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("NomeInternoAzure")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("OrganizacaoId")
-                        .HasColumnType("int");
+                    b.Property<string>("NomeOriginal")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int?>("RedacaoId")
                         .HasColumnType("int");
@@ -67,8 +300,6 @@ namespace Redacao.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrganizacaoId");
-
                     b.HasIndex("RedacaoId");
 
                     b.HasIndex("TemaId");
@@ -76,6 +307,50 @@ namespace Redacao.Data.Migrations
                     b.HasIndex("UsuarioCriadorId");
 
                     b.ToTable("Documentos");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Notificacao.NotificacaoNotificacao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Mensagem")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TipoNotificacao")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Visualizada")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Notificacoes");
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Organizacao.OrganizacaoOrganizacao", b =>
@@ -141,9 +416,6 @@ namespace Redacao.Data.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("AvaliacaoProfessorId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
@@ -154,7 +426,7 @@ namespace Redacao.Data.Migrations
                     b.Property<DateTime?>("ModificadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OrganizacaoId")
+                    b.Property<int?>("ProfessorResponsavelId")
                         .HasColumnType("int");
 
                     b.Property<int>("StatusRedacao")
@@ -174,18 +446,18 @@ namespace Redacao.Data.Migrations
                     b.Property<int>("UsuarioCriadorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsuarioProfessorId")
+                    b.Property<int>("VestibularId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrganizacaoId");
+                    b.HasIndex("ProfessorResponsavelId");
 
                     b.HasIndex("TemaRedacaoId");
 
                     b.HasIndex("UsuarioCriadorId");
 
-                    b.HasIndex("UsuarioProfessorId");
+                    b.HasIndex("VestibularId");
 
                     b.ToTable("Redacoes");
                 });
@@ -216,22 +488,12 @@ namespace Redacao.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("OrganizacaoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UsuarioCriadorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VestibularId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrganizacaoId");
-
                     b.HasIndex("UsuarioCriadorId");
-
-                    b.HasIndex("VestibularId");
 
                     b.ToTable("TemasRedacao");
                 });
@@ -340,9 +602,28 @@ namespace Redacao.Data.Migrations
                     b.Property<int>("OrganizacaoId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
                     b.HasKey("UsuarioId", "OrganizacaoId");
 
                     b.HasIndex("OrganizacaoId");
+
+                    b.HasIndex("UsuarioCriadorId");
 
                     b.ToTable("UsuarioOrganizacoes");
                 });
@@ -417,6 +698,7 @@ namespace Redacao.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
@@ -436,6 +718,9 @@ namespace Redacao.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int>("QuantidadeCorrecoesDisponiveis")
+                        .HasColumnType("int");
 
                     b.Property<string>("RG")
                         .HasMaxLength(9)
@@ -467,6 +752,42 @@ namespace Redacao.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Redacao.Domain.Entidades.Vestibular.VestibularTema", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TemaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VestibularId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TemaId");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.HasIndex("VestibularId");
+
+                    b.ToTable("VestibularesTemas");
+                });
+
             modelBuilder.Entity("Redacao.Domain.Entidades.Vestibular.VestibularVestibular", b =>
                 {
                     b.Property<int>("Id")
@@ -493,30 +814,124 @@ namespace Redacao.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("OrganizacaoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UsuarioCriadorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrganizacaoId");
 
                     b.HasIndex("UsuarioCriadorId");
 
                     b.ToTable("Vestibulares");
                 });
 
-            modelBuilder.Entity("Redacao.Domain.Entidades.Documento.DocumentoDocumento", b =>
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoPergunta", b =>
                 {
-                    b.HasOne("Redacao.Domain.Entidades.Organizacao.OrganizacaoOrganizacao", "Organizacao")
-                        .WithMany("Documentos")
-                        .HasForeignKey("OrganizacaoId")
-                        .HasConstraintName("FK__Documento__Organizacao")
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoPerguntaResposta", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoPergunta", "AvaliacaoCorrecaoPergunta")
+                        .WithMany("AvaliacaoCorrecaoPerguntaRespostas")
+                        .HasForeignKey("AvaliacaoCorrecaoPerguntaId");
+
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AvaliacaoCorrecaoPergunta");
+
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoRespostaProfessor", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoPerguntaResposta", "AvaliacaoCorrecaoPerguntaResposta")
+                        .WithMany("AvaliacaoCorrecaoRespostaProfessores")
+                        .HasForeignKey("AvaliacaoCorrecaoPerguntaRespostaId");
+
+                    b.HasOne("Redacao.Domain.Entidades.Redacao.RedacaoRedacao", "Redacao")
+                        .WithMany("AvaliacaoCorrecaoRespostaProfessores")
+                        .HasForeignKey("RedacaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AvaliacaoCorrecaoPerguntaResposta");
+
+                    b.Navigation("Redacao");
+
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPergunta", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPerguntaResposta", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPergunta", "AvaliacaoRedacaoPergunta")
+                        .WithMany("AvaliacaoRedacaoPerguntaRespostas")
+                        .HasForeignKey("AvaliacaoRedacaoPerguntaId");
+
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AvaliacaoRedacaoPergunta");
+
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoRespostaAluno", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPerguntaResposta", "AvaliacaoRedacaoPerguntaResposta")
+                        .WithMany("AvaliacaoRedacaoRespostaAlunos")
+                        .HasForeignKey("AvaliacaoRedacaoPerguntaRespostaId");
+
+                    b.HasOne("Redacao.Domain.Entidades.Redacao.RedacaoRedacao", "Redacao")
+                        .WithMany("AvaliacaoRedacaoRespostaAlunos")
+                        .HasForeignKey("RedacaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AvaliacaoRedacaoPerguntaResposta");
+
+                    b.Navigation("Redacao");
+
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Documento.DocumentoDocumento", b =>
+                {
                     b.HasOne("Redacao.Domain.Entidades.Redacao.RedacaoRedacao", "Redacao")
                         .WithMany("DocumentosRedacao")
                         .HasForeignKey("RedacaoId")
@@ -533,11 +948,29 @@ namespace Redacao.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Organizacao");
-
                     b.Navigation("Redacao");
 
                     b.Navigation("Tema");
+
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Notificacao.NotificacaoNotificacao", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "Usuario")
+                        .WithMany("Notificacoes")
+                        .HasForeignKey("UsuarioId")
+                        .HasConstraintName("FK__Notificacao__Usuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
 
                     b.Navigation("UsuarioCriador");
                 });
@@ -555,12 +988,10 @@ namespace Redacao.Data.Migrations
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Redacao.RedacaoRedacao", b =>
                 {
-                    b.HasOne("Redacao.Domain.Entidades.Organizacao.OrganizacaoOrganizacao", "Organizacao")
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "Usuario")
                         .WithMany("Redacoes")
-                        .HasForeignKey("OrganizacaoId")
-                        .HasConstraintName("FK__Redacao__Organizacao")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfessorResponsavelId")
+                        .HasConstraintName("FK__Redacao__UsuarioProfessorResponsavel");
 
                     b.HasOne("Redacao.Domain.Entidades.Redacao.TemaRedacao", "TemaRedacao")
                         .WithMany("Redacoes")
@@ -575,49 +1006,30 @@ namespace Redacao.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "Usuario")
-                        .WithMany("Redacoes")
-                        .HasForeignKey("UsuarioProfessorId")
-                        .HasConstraintName("FK__Redacao__UsuarioProfessor")
+                    b.HasOne("Redacao.Domain.Entidades.Vestibular.VestibularVestibular", "Vestibular")
+                        .WithMany()
+                        .HasForeignKey("VestibularId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Organizacao");
 
                     b.Navigation("TemaRedacao");
 
                     b.Navigation("Usuario");
 
                     b.Navigation("UsuarioCriador");
+
+                    b.Navigation("Vestibular");
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Redacao.TemaRedacao", b =>
                 {
-                    b.HasOne("Redacao.Domain.Entidades.Organizacao.OrganizacaoOrganizacao", "Organizacao")
-                        .WithMany("TemasRedacao")
-                        .HasForeignKey("OrganizacaoId")
-                        .HasConstraintName("FK__TemaRedacao__Organizacao")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
                         .WithMany()
                         .HasForeignKey("UsuarioCriadorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Redacao.Domain.Entidades.Vestibular.VestibularVestibular", "Vestibular")
-                        .WithMany("TemasRedacao")
-                        .HasForeignKey("VestibularId")
-                        .HasConstraintName("FK__TemaRedacao__Vestibular")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Organizacao");
-
                     b.Navigation("UsuarioCriador");
-
-                    b.Navigation("Vestibular");
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Usuario.RoleClaim", b =>
@@ -655,6 +1067,12 @@ namespace Redacao.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "Usuario")
                         .WithMany("Organizacoes")
                         .HasForeignKey("UsuarioId")
@@ -664,6 +1082,8 @@ namespace Redacao.Data.Migrations
                     b.Navigation("Organizacao");
 
                     b.Navigation("Usuario");
+
+                    b.Navigation("UsuarioCriador");
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Usuario.UsuarioRole", b =>
@@ -690,12 +1110,11 @@ namespace Redacao.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Redacao.Domain.Entidades.Vestibular.VestibularVestibular", b =>
+            modelBuilder.Entity("Redacao.Domain.Entidades.Vestibular.VestibularTema", b =>
                 {
-                    b.HasOne("Redacao.Domain.Entidades.Organizacao.OrganizacaoOrganizacao", "Organizacao")
+                    b.HasOne("Redacao.Domain.Entidades.Redacao.TemaRedacao", "Tema")
                         .WithMany("Vestibulares")
-                        .HasForeignKey("OrganizacaoId")
-                        .HasConstraintName("FK__Vestibular__Organizacao")
+                        .HasForeignKey("TemaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -705,26 +1124,61 @@ namespace Redacao.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Organizacao");
+                    b.HasOne("Redacao.Domain.Entidades.Vestibular.VestibularVestibular", "Vestibular")
+                        .WithMany("Temas")
+                        .HasForeignKey("VestibularId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tema");
+
+                    b.Navigation("UsuarioCriador");
+
+                    b.Navigation("Vestibular");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Vestibular.VestibularVestibular", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("UsuarioCriador");
                 });
 
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoPergunta", b =>
+                {
+                    b.Navigation("AvaliacaoCorrecaoPerguntaRespostas");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoCorrecaoPerguntaResposta", b =>
+                {
+                    b.Navigation("AvaliacaoCorrecaoRespostaProfessores");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPergunta", b =>
+                {
+                    b.Navigation("AvaliacaoRedacaoPerguntaRespostas");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPerguntaResposta", b =>
+                {
+                    b.Navigation("AvaliacaoRedacaoRespostaAlunos");
+                });
+
             modelBuilder.Entity("Redacao.Domain.Entidades.Organizacao.OrganizacaoOrganizacao", b =>
                 {
-                    b.Navigation("Documentos");
-
-                    b.Navigation("Redacoes");
-
-                    b.Navigation("TemasRedacao");
-
                     b.Navigation("Usuarios");
-
-                    b.Navigation("Vestibulares");
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Redacao.RedacaoRedacao", b =>
                 {
+                    b.Navigation("AvaliacaoCorrecaoRespostaProfessores");
+
+                    b.Navigation("AvaliacaoRedacaoRespostaAlunos");
+
                     b.Navigation("DocumentosRedacao");
                 });
 
@@ -733,10 +1187,14 @@ namespace Redacao.Data.Migrations
                     b.Navigation("DocumentosTema");
 
                     b.Navigation("Redacoes");
+
+                    b.Navigation("Vestibulares");
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", b =>
                 {
+                    b.Navigation("Notificacoes");
+
                     b.Navigation("Organizacoes");
 
                     b.Navigation("Redacoes");
@@ -744,7 +1202,7 @@ namespace Redacao.Data.Migrations
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Vestibular.VestibularVestibular", b =>
                 {
-                    b.Navigation("TemasRedacao");
+                    b.Navigation("Temas");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,29 +18,29 @@ namespace Redacao.Domain.Entidades.Redacao
 
         }
 
-        public TemaRedacao(Int32 id, string nome, string descricao, Int32 organizacaoId, Int32 vestibularId, AcaoEntidadeEnum acaoEntidade, Int32 usuarioId)
+        public TemaRedacao(string nome, string descricao, Int32 id, 
+                           Int32 usuarioCriadorId, DateTime criadoEm,
+                           DateTime? modificadoEm, bool ativo)
         {
             this.SetarNome(nome);
             this.SetarDescricao(descricao);
-            this.SetarOrganizacaoId(organizacaoId);
-            this.SetarVestibularId(vestibularId);
+            this.SetarId(id);
+            this.SetarUsuarioCriadorId(usuarioCriadorId);
+            this.SetarCriadoEm(criadoEm);
+            this.SetarModificadoEm(modificadoEm);
+            this.SetarAtivo(ativo);
         }
 
         public string Nome { get; private set; }
 
         public string Descricao { get; private set; }
 
-        public Int32 OrganizacaoId { get; private set; }
-
-        public Int32 VestibularId { get; private set; }
-
-        public virtual OrganizacaoOrganizacao Organizacao { get; private set; }
-
-        public virtual VestibularVestibular Vestibular { get; private set; }
 
         public virtual ICollection<RedacaoRedacao> Redacoes { get; private set; }
 
         public virtual ICollection<DocumentoDocumento> DocumentosTema { get; private set; }
+
+        public virtual ICollection<VestibularTema> Vestibulares { get; private set; }
 
         public async Task<ValidationResult> ValidaObjeto(TemaRedacao objeto)
         {
@@ -56,16 +56,6 @@ namespace Redacao.Domain.Entidades.Redacao
         private void SetarDescricao(string descricao)
         {
             this.Descricao = descricao;
-        }
-
-        private void SetarOrganizacaoId(Int32 organizacaoId)
-        {
-            this.OrganizacaoId = organizacaoId;
-        }
-
-        private void SetarVestibularId(Int32 vestibularId)
-        {
-            this.VestibularId = vestibularId;
         }
     }
 }

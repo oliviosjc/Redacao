@@ -16,11 +16,6 @@ namespace Redacao.Data.Mappings.Vestibular
             builder.Property(p => p.Nome).IsRequired().HasMaxLength(255);
 
             builder.Property(p => p.Descricao).IsRequired().HasMaxLength(255);
-
-            builder.HasOne(v => v.Organizacao)
-                .WithMany(or => or.Vestibulares)
-                .HasForeignKey(f => f.OrganizacaoId)
-                .HasConstraintName("FK__Vestibular__Organizacao");
         }
     }
 }

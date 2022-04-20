@@ -6,5 +6,6 @@ namespace Redacao.Domain.Enums.Redacao
 {
     public enum TipoRedacaoEnum
     {
+        DEFAULT = 1
     }
 }

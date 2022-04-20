@@ -106,6 +106,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Azure.Messaging.ServiceBus": {
+              "target": "Package",
+              "version": "[7.7.0, )"
+            },
+            "Microsoft.Azure.ServiceBus": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "WindowsAzure.Storage": {
+              "target": "Package",
+              "version": "[9.3.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

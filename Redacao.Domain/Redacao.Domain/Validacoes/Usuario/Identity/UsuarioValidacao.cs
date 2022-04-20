@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Redacao.Domain.Entidades.Usuario;
+using Redacao.Domain.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,9 +11,22 @@ namespace Redacao.Domain.Validacoes.Usuario.Identity
     {
         public UsuarioValidacao()
         {
-            RuleFor(r => r.RG).MaximumLength(9);
-            RuleFor(r => r.CPF).MaximumLength(11);
-            RuleFor(r => r.CNPJ).MaximumLength(14);
+            RuleFor(r => r.QuantidadeCorrecoesDisponiveis).NotNull().NotEmpty();
+
+            RuleFor(r => r.RG).NotEmpty().NotNull().MaximumLength(9);
+
+            RuleFor(r => r.CPF).NotEmpty().NotNull().MaximumLength(11).Custom((cpf, context) =>
+            {
+                if (!DocumentoUtil.ValidarCPF(cpf))
+                    context.AddFailure("O 'CPF' é inválido.");
+            });
+
+            RuleFor(r => r.CNPJ).NotEmpty().NotNull().MaximumLength(14).Custom((cnpj, context) =>
+            {
+                if (!DocumentoUtil.ValidarCNPJ(cnpj))
+                    context.AddFailure("O 'CNPJ' é inválido.");
+            });
+
             RuleFor(r => r.Email).NotNull().MaximumLength(50);
             RuleFor(r => r.PhoneNumber).NotNull().MaximumLength(13);
             RuleFor(r => r.TipoUsuario).NotNull().NotEmpty().IsInEnum();

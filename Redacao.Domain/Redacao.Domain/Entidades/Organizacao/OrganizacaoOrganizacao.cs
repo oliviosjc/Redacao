@@ -51,14 +51,6 @@ namespace Redacao.Domain.Entidades.Organizacao
 
         public TipoOrganizacaoEnum TipoOrganizacao { get; private set; }
 
-        public virtual ICollection<RedacaoRedacao> Redacoes { get; private set; }
-
-        public virtual ICollection<VestibularVestibular> Vestibulares { get; private set; }
-
-        public virtual ICollection<TemaRedacao> TemasRedacao { get; private set; }
-
-        public virtual ICollection<DocumentoDocumento> Documentos { get; private set; }
-
         public virtual ICollection<UsuarioOrganizacao> Usuarios { get; private set; }
 
         private void SetarNome(string nome)

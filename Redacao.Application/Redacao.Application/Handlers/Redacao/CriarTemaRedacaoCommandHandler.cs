@@ -32,14 +32,7 @@ namespace Redacao.Application.Handlers.Redacao
         {
             try
             {
-                var vestibular = await _repositorioVestibular.Get(wh => wh.Id == request.VestibularId 
-                                                            && wh.Ativo 
-                                                            && wh.OrganizacaoId == request.UsuarioLogado.OrganizacaoId);
-
-                if(vestibular is null)
-                    return ResponseReturnHelper<string>.GerarRetorno(HttpStatusCode.BadRequest, "O vestibular que deseja vincular ao tema não existe ou você não possui direitos para acessa-lo :/");
-
-                var tema = new TemaRedacao(0, request.Nome, request.Descricao, request.UsuarioLogado.OrganizacaoId, request.VestibularId, AcaoEntidadeEnum.CADASTRO, request.UsuarioLogado.Id);
+                var tema = new TemaRedacao(request.Nome, request.Descricao, 0, request.UsuarioLogado.Id, DateTime.UtcNow, null, true);
 
                 var temaValido = await tema.ValidaObjeto(tema);
 

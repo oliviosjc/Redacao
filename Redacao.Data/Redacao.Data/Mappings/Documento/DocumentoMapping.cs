@@ -13,18 +13,13 @@ namespace Redacao.Data.Mappings.Documento
         {
             builder.ToTable("Documentos");
 
-            builder.Property(p => p.AmazonS3Id).IsRequired();
+            builder.Property(p => p.NomeOriginal).IsRequired().HasMaxLength(255);
 
-            builder.Property(p => p.Nome).IsRequired().HasMaxLength(256);
+            builder.Property(p => p.NomeInternoAzure).IsRequired().HasMaxLength(255);
 
             builder.Property(p => p.Extensao).IsRequired().HasMaxLength(8);
 
             builder.Property(p => p.Tamanho).IsRequired().HasMaxLength(8);
-
-            builder.HasOne(d => d.Organizacao)
-                .WithMany(or => or.Documentos)
-                .HasForeignKey(f => f.OrganizacaoId)
-                .HasConstraintName("FK__Documento__Organizacao");
 
             builder.HasOne(d => d.Redacao)
                 .WithMany(r => r.DocumentosRedacao)

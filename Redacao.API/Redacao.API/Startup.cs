@@ -1,6 +1,8 @@
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using Redacao.API.Helper;
 using Redacao.Data.Context;
 using Redacao.Domain.Entidades.Usuario;
+using Redacao.Infra.Socket.SignalR.Redacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +36,18 @@ namespace Redacao.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks()
+                .AddSqlServer(Configuration.GetConnectionString("RedacaoSQLServerConnection"),
+                name: "RedacaoDB");
+
+            services.AddHealthChecksUI()
+                    .AddInMemoryStorage();
+
             services.AddControllers();
+
+            services.AddSignalR();
+
+            services.RegisterDependencies(Configuration);
 
             services.AddSwaggerConfiguration();
 
@@ -77,8 +91,6 @@ namespace Redacao.API
                 options.Password.RequireUppercase = true;
                 options.Password.RequireNonAlphanumeric = true;
             });
-
-            services.RegisterDependencies(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -104,7 +116,16 @@ namespace Redacao.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<RedacaoHub>("/redacaoHub");
             });
+
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                Predicate = p => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
+
+            app.UseHealthChecksUI(options => { options.UIPath = "/dashboard"; });
         }
     }
 }

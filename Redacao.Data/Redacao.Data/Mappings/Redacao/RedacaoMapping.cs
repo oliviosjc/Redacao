@@ -31,13 +31,8 @@ namespace Redacao.Data.Mappings.Redacao
 
             builder.HasOne(r => r.Usuario)
                 .WithMany(ua => ua.Redacoes)
-                .HasForeignKey(f => f.UsuarioProfessorId)
-                .HasConstraintName("FK__Redacao__UsuarioProfessor");
-
-            builder.HasOne(r => r.Organizacao)
-                .WithMany(ua => ua.Redacoes)
-                .HasForeignKey(f => f.OrganizacaoId)
-                .HasConstraintName("FK__Redacao__Organizacao");
+                .HasForeignKey(f => f.ProfessorResponsavelId)
+                .HasConstraintName("FK__Redacao__UsuarioProfessorResponsavel");
         }
     }
 }

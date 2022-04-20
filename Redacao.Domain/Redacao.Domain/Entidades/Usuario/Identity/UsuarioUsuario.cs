@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Identity;
 using Redacao.Domain.Entidades.Base;
+using Redacao.Domain.Entidades.Notificacao;
 using Redacao.Domain.Entidades.Organizacao;
 using Redacao.Domain.Entidades.Redacao;
 using Redacao.Domain.Enums.Usuario;
@@ -21,13 +22,15 @@ namespace Redacao.Domain.Entidades.Usuario
 
         }
 
-        public UsuarioUsuario(string nome, string cpf, string rg, string cnpj, TipoUsuarioEnum tipoUsuario, string numeroCelular, string email)
+        public UsuarioUsuario(string nome, string cpf, string rg, string cnpj, TipoUsuarioEnum tipoUsuario, string numeroCelular, string email, Int32 quantidadeCorrecoesDisponiveis, Int32 id)
         {
+            this.SetarId(id);
             this.SetarCPF(cpf);
             this.SetarCNPJ(cnpj);
             this.SetarRG(rg);
             this.SetarTipoUsuario(tipoUsuario);
             this.SetarNome(nome);
+            this.SetarQuantidadeCorrecoesDisponiveis(quantidadeCorrecoesDisponiveis);
             this.PhoneNumber = numeroCelular;
             this.Email = email;
             this.NormalizedEmail = email;
@@ -35,6 +38,7 @@ namespace Redacao.Domain.Entidades.Usuario
             this.NormalizedUserName = email;
         }
 
+        [Required]
         [StringLength(128)]
         public string Nome { get; private set; }
 
@@ -47,11 +51,17 @@ namespace Redacao.Domain.Entidades.Usuario
         [StringLength(14)]
         public string CNPJ { get; private set; }
 
+        [Required]
         public TipoUsuarioEnum TipoUsuario { get; private set; }
+
+        [Required]
+        public Int32 QuantidadeCorrecoesDisponiveis { get; private set; }
 
         public virtual ICollection<RedacaoRedacao> Redacoes { get; private set; }
 
         public virtual ICollection<UsuarioOrganizacao> Organizacoes { get; private set; }
+
+        public virtual ICollection<NotificacaoNotificacao> Notificacoes { get; private set; }
 
         private void SetarCPF(string cpf)
         {
@@ -78,10 +88,31 @@ namespace Redacao.Domain.Entidades.Usuario
             this.Nome = nome;
         }
 
+        private void SetarQuantidadeCorrecoesDisponiveis(Int32 quantidadeCorrecoesDisponiveis)
+        {
+            this.QuantidadeCorrecoesDisponiveis = quantidadeCorrecoesDisponiveis;
+        }
+
+        public void AdicionarQuantidadeCorrecoesDisponiveis(Int32 quantidadeCorrecoesDisponiveis)
+        {
+            this.QuantidadeCorrecoesDisponiveis += quantidadeCorrecoesDisponiveis;
+        }
+
+        public void SubtrairQuantidadeCorrecoesDisponiveis(Int32 quantidadeCorrecoesDisponiveis)
+        {
+            this.QuantidadeCorrecoesDisponiveis -= quantidadeCorrecoesDisponiveis;
+        }
+
+        private void SetarId(Int32 id)
+        {
+            this.Id = id;
+        }
+
         public  async Task<ValidationResult> ValidaObjeto(UsuarioUsuario objeto)
         {
             UsuarioValidacao validacao = new UsuarioValidacao();
             return await validacao.ValidateAsync(objeto);
         }
+
     }
 }

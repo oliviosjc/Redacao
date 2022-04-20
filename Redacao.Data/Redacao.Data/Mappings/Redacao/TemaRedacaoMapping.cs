@@ -16,16 +16,6 @@ namespace Redacao.Data.Mappings.Redacao
             builder.Property(p => p.Nome).IsRequired().HasMaxLength(255);
 
             builder.Property(p => p.Descricao).IsRequired().HasMaxLength(255);
-
-            builder.HasOne(tr => tr.Organizacao)
-                .WithMany(or => or.TemasRedacao)
-                .HasForeignKey(f => f.OrganizacaoId)
-                .HasConstraintName("FK__TemaRedacao__Organizacao");
-
-            builder.HasOne(tr => tr.Vestibular)
-                .WithMany(v => v.TemasRedacao)
-                .HasForeignKey(f => f.VestibularId)
-                .HasConstraintName("FK__TemaRedacao__Vestibular");
         }
     }
 }
