@@ -17,6 +17,10 @@ Abaixo segue a lista de libs e frameworks utilizados .:
 
 **.NET Core Background Services**
 
+**Injeção de dependências**
+
+**Middleware**
+
 **CQRS and Notifications (Mediatr)**
 
 **Fluent Validation**
