@@ -1,3 +1,4 @@
+
 # Redação Application
 
 Olá Mundo!
@@ -5,6 +6,10 @@ Olá Mundo!
 Este repositório foi criado com o objetivo de construir uma aplicação resumindo boas práticas e conhecimentos que adquiri nos meus 5 anos de experiência como desenvolvedor.
 
 :. Abaixo segue a lista de tecnologias, bibliotecas e frameworks utilizados .:
+
+```bash
+  Em desenvolvimento...
+```
 
 
 **Linguagem**  
