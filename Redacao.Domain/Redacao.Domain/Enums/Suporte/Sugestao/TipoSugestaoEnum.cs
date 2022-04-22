@@ -6,6 +6,7 @@ namespace Redacao.Domain.Enums.Suporte.Sugestao
 {
     public enum TipoSugestaoEnum
     {
-        NOVO_TEMA = 0
+        MELHORIA = 0, 
+        FEEDBACK = 1
     }
 }

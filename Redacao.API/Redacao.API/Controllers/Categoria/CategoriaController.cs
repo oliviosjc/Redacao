@@ -21,17 +21,16 @@ namespace Redacao.API.Controllers.Categoria
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class CategoriaController : BaseController
+    public class CategoriaController : BaseController<CategoriaCategoria>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<CategoriaCategoria> _logger;
 
-        public CategoriaController(IMediator mediator, 
-                                   ILogger<CategoriaCategoria> logger)
+        public CategoriaController(IMediator mediator,
+                                   ILogger<CategoriaCategoria> categoria) : base(categoria)
         {
             _mediator = mediator;
-            _logger = logger;
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Criar([FromBody] CriarCategoriaCommand command)
@@ -44,8 +43,7 @@ namespace Redacao.API.Controllers.Categoria
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<CategoriaCategoria>(ex);
             }
         }
 
@@ -60,8 +58,7 @@ namespace Redacao.API.Controllers.Categoria
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<CategoriaCategoria>(ex);
             }
         }
 
@@ -78,8 +75,8 @@ namespace Redacao.API.Controllers.Categoria
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<CategoriaCategoria>(ex);
+
             }
         }
 
@@ -90,14 +87,11 @@ namespace Redacao.API.Controllers.Categoria
             {
                 BuscarTodasCategoriasPorTipoQuery query = new BuscarTodasCategoriasPorTipoQuery(id, paginacao);
 
-                var resultado = await _mediator.Send(query);
-
-                return await RetornoBase(resultado);
+                return await RetornoBase(await _mediator.Send(query));
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<CategoriaCategoria>(ex);
             }
         }
 
@@ -114,8 +108,7 @@ namespace Redacao.API.Controllers.Categoria
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<CategoriaCategoria>(ex);
             }
         }
     }

@@ -21,4 +21,8 @@
     <ProjectReference Include="..\..\Redacao.Domain\Redacao.Domain\Redacao.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mappings\Suporte\Chamado\" />
+  </ItemGroup>
+
 </Project>

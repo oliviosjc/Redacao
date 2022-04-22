@@ -37,7 +37,7 @@ namespace Redacao.Application.Handlers.Suporte.Sugestao
                 if(sugestao is null)
                     return ResponseReturnHelper<string>.GerarRetorno(HttpStatusCode.BadRequest, "A sugestão que deseja editar não existe na base de dados.");
 
-                sugestao = new SugestaoSugestao(request.Tipo, sugestao.Status, request.Descricao, sugestao.Id, sugestao.UsuarioCriadorId, sugestao.CriadoEm, DateTime.UtcNow, true);
+                sugestao = new SugestaoSugestao(request.Tipo, sugestao.Status, request.Descricao, null ,sugestao.Id, sugestao.UsuarioCriadorId, sugestao.CriadoEm, DateTime.UtcNow, true);
 
                 var sugestaoValida = await sugestao.ValidaObjeto(sugestao);
 

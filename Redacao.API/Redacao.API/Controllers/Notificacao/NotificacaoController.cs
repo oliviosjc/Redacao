@@ -18,15 +18,13 @@ namespace Redacao.API.Controllers.Notificacao
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class NotificacaoController : BaseController
+    public class NotificacaoController : BaseController<NotificacaoNotificacao>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<NotificacaoNotificacao> _logger;
         public NotificacaoController(IMediator mediator,
-                                     ILogger<NotificacaoNotificacao> logger)
+                                     ILogger<NotificacaoNotificacao> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [Authorize(AuthenticationSchemes = "Bearer", Roles = "SYSADMIN")]
@@ -43,8 +41,7 @@ namespace Redacao.API.Controllers.Notificacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<NotificacaoNotificacao>(ex);
             }
         }
 
@@ -62,8 +59,7 @@ namespace Redacao.API.Controllers.Notificacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<NotificacaoNotificacao>(ex);
             }
         }
 
@@ -79,8 +75,7 @@ namespace Redacao.API.Controllers.Notificacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<NotificacaoNotificacao>(ex);
             }
         }
 
@@ -96,8 +91,7 @@ namespace Redacao.API.Controllers.Notificacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<NotificacaoNotificacao>(ex);
             }
         }
     }

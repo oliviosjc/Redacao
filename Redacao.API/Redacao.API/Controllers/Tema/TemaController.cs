@@ -19,15 +19,13 @@ namespace Redacao.API.Controllers.Tema
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class TemaController : BaseController
+    public class TemaController : BaseController<TemaRedacao>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<TemaRedacao> _logger;
 
-        public TemaController(IMediator mediator, ILogger<TemaRedacao> logger)
+        public TemaController(IMediator mediator, ILogger<TemaRedacao> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpPost]
@@ -41,8 +39,7 @@ namespace Redacao.API.Controllers.Tema
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<TemaRedacao>(ex);
             }
         }
 
@@ -57,8 +54,7 @@ namespace Redacao.API.Controllers.Tema
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<TemaRedacao>(ex);
             }
         }
 
@@ -75,8 +71,7 @@ namespace Redacao.API.Controllers.Tema
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<TemaRedacao>(ex);
             }
         }
 
@@ -93,8 +88,7 @@ namespace Redacao.API.Controllers.Tema
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<TemaRedacao>(ex);
             }
         }
 
@@ -111,8 +105,7 @@ namespace Redacao.API.Controllers.Tema
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<TemaRedacao>(ex);
             }
         }
 
@@ -128,8 +121,7 @@ namespace Redacao.API.Controllers.Tema
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<TemaRedacao>(ex);
             }
         }
 

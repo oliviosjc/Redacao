@@ -6,6 +6,8 @@ namespace Redacao.Domain.Enums.Suporte.Sugestao
 {
     public enum StatusSugestaoEnum
     {
-        CRIADA = 0
+        CRIADA = 0,
+        AGUARDANDO_RESPOSTA_SYSADMIN = 1,
+        RESPONDIDA = 2
     }
 }

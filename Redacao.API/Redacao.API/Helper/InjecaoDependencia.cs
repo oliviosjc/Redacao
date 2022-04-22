@@ -71,6 +71,7 @@ namespace Redacao.API.Helper
             services.AddMediatR(typeof(BuscarMinhasSugestoesQueryHandler));
             services.AddMediatR(typeof(BuscarSugestaoPorIdQueryHandler));
             services.AddMediatR(typeof(BuscarTodasSugestoesQueryHandler));
+            services.AddMediatR(typeof(ResponderSugestaoCommandHandler));
 
             services.AddMediatR(typeof(BuscarRolesUsuarioLogadoQueryHandler));
             services.AddMediatR(typeof(BuscarTodasRolesQueryHandler));

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Redacao.Application.DTOs;
 using Redacao.Application.DTOs.Usuario.Identity;
+using Redacao.Domain.Entidades.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +15,13 @@ namespace Redacao.API.Controllers.Base
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseController : ControllerBase
+    public class BaseController<B> : ControllerBase where B : class
     {
-        public BaseController()
-        {
+        private readonly ILogger<B> _logger;
 
+        public BaseController(ILogger<B> logger)
+        {
+            _logger = logger;
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -41,6 +45,11 @@ namespace Redacao.API.Controllers.Base
                         return await Task.FromResult(NoContent());
                     }
 
+                case HttpStatusCode.UnprocessableEntity:
+                    {
+                        return await Task.FromResult(UnprocessableEntity(model));
+                    }
+
                 default:
                     {
                         return await Task.FromResult(StatusCode(500));
@@ -49,8 +58,9 @@ namespace Redacao.API.Controllers.Base
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> RetornoBase(Exception ex)
+        public async Task<IActionResult> RetornoBase<T>(Exception ex)
         {
+            _logger.LogCritical(ex.Message);
             return await Task.FromResult(StatusCode(500));
         }
 

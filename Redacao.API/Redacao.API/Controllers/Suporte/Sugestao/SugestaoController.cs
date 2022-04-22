@@ -17,16 +17,14 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class SugestaoController : BaseController
+    public class SugestaoController : BaseController<SugestaoSugestao>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<SugestaoSugestao> _logger;
 
         public SugestaoController(IMediator mediator,
-                                  ILogger<SugestaoSugestao> logger)
+                                  ILogger<SugestaoSugestao> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpPost]
@@ -40,8 +38,7 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<SugestaoSugestao>(ex);
             }
         }
 
@@ -56,8 +53,7 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<SugestaoSugestao>(ex);
             }
         }
 
@@ -74,8 +70,7 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<SugestaoSugestao>(ex);
             }
         }
 
@@ -92,8 +87,7 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<SugestaoSugestao>(ex);
             }
         }
 
@@ -110,8 +104,22 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<SugestaoSugestao>(ex);
+            }
+        }
+
+        [HttpPost("responder")]
+        public async Task<IActionResult> ResponderSugestao([FromBody] ResponderSugestaoCommand command)
+        {
+            try
+            {
+                var resultado = await _mediator.Send(command);
+
+                return await RetornoBase(resultado);
+            }
+            catch (Exception ex)
+            {
+                return await RetornoBase<SugestaoSugestao>(ex);
             }
         }
     }

@@ -17,6 +17,7 @@ namespace Redacao.Domain.Entidades.Suporte.Sugestao
         }
 
         public SugestaoSugestao(TipoSugestaoEnum tipo, StatusSugestaoEnum status, string descricao,
+                                string resposta,
                                 Int32 id, Int32 usuarioCriadorId, DateTime criadoEm, DateTime? modificadoEm,
                                 bool ativo)
         {
@@ -28,6 +29,7 @@ namespace Redacao.Domain.Entidades.Suporte.Sugestao
             this.SetarTipo(tipo);
             this.SetarStatus(status);
             this.SetarDescricao(Descricao);
+            this.SetarResposta(resposta);
         }
 
         public TipoSugestaoEnum Tipo { get; private set; } 
@@ -35,6 +37,8 @@ namespace Redacao.Domain.Entidades.Suporte.Sugestao
         public StatusSugestaoEnum Status { get; private set; }
 
         public string Descricao { get; private set; }
+
+        public string Resposta { get; private set; }
 
         private void SetarTipo(TipoSugestaoEnum tipo)
         {
@@ -49,6 +53,11 @@ namespace Redacao.Domain.Entidades.Suporte.Sugestao
         private void SetarDescricao(string descricao)
         {
             this.Descricao = descricao;
+        }
+
+        public void SetarResposta(string resposta)
+        {
+            this.Resposta = resposta;
         }
 
         public async Task<ValidationResult> ValidaObjeto(SugestaoSugestao objeto)

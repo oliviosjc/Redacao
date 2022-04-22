@@ -32,7 +32,7 @@ namespace Redacao.Application.Handlers.Suporte.Sugestao
         {
             try
             {
-                var sugestao = new SugestaoSugestao(request.Tipo, StatusSugestaoEnum.CRIADA, request.Descricao, 0, _usuarioLogado.Id, DateTime.UtcNow, null, true);
+                var sugestao = new SugestaoSugestao(request.Tipo, StatusSugestaoEnum.CRIADA, request.Descricao, null ,0, _usuarioLogado.Id, DateTime.UtcNow, null, true);
 
                 var sugestaoValida = await sugestao.ValidaObjeto(sugestao);
 

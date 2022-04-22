@@ -6,6 +6,7 @@ using Redacao.Application.Commands.Usuario.Identity;
 using Redacao.Application.Handlers.Usuario.Identity;
 using Redacao.Application.Queries.Usuario.Auth;
 using Redacao.Application.Queries.Usuario.Identity;
+using Redacao.Domain.Entidades.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,16 +16,14 @@ namespace Redacao.API.Controllers.Usuario.Identity
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class AuthController : BaseController
+    public class AuthController : BaseController<UsuarioUsuario>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<AuthController> _logger;
 
         public AuthController(IMediator mediator,
-                              ILogger<AuthController> logger)
+                              ILogger<UsuarioUsuario> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpPost("registrar")]
@@ -38,8 +37,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch(Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 
@@ -54,8 +52,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch(Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 
@@ -70,8 +67,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 
@@ -86,8 +82,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 
@@ -102,8 +97,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 
@@ -120,8 +114,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 
@@ -136,8 +129,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 
@@ -154,8 +146,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 
@@ -172,8 +163,7 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
 

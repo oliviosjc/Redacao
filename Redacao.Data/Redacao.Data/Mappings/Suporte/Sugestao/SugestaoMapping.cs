@@ -18,6 +18,8 @@ namespace Redacao.Data.Mappings.Suporte.Sugestao
             builder.Property(p => p.Tipo).IsRequired();
 
             builder.Property(p => p.Status).IsRequired();
+
+            builder.Property(p => p.Resposta).HasMaxLength(255);
         }
     }
 }

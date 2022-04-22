@@ -7,6 +7,7 @@ using Redacao.API.Controllers.Base;
 using Redacao.Application.Commands.Organizacao;
 using Redacao.Application.DTOs;
 using Redacao.Application.Queries.Organizacao;
+using Redacao.Domain.Entidades.Organizacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,13 @@ namespace Redacao.API.Controllers.Organizacao
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class OrganizacaoController : BaseController
+    public class OrganizacaoController : BaseController<OrganizacaoOrganizacao>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<OrganizacaoController> _logger;
 
-        public OrganizacaoController(IMediator mediator, ILogger<OrganizacaoController> logger)
+        public OrganizacaoController(IMediator mediator, ILogger<OrganizacaoOrganizacao> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpPost]
@@ -39,8 +38,7 @@ namespace Redacao.API.Controllers.Organizacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<OrganizacaoOrganizacao>(ex);
             }
         }
 
@@ -55,8 +53,7 @@ namespace Redacao.API.Controllers.Organizacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<OrganizacaoOrganizacao>(ex);
             }
         }
 
@@ -73,8 +70,7 @@ namespace Redacao.API.Controllers.Organizacao
             }
             catch(Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<OrganizacaoOrganizacao>(ex);
             }
         }
 
@@ -91,8 +87,7 @@ namespace Redacao.API.Controllers.Organizacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<OrganizacaoOrganizacao>(ex);
             }
         }
     }

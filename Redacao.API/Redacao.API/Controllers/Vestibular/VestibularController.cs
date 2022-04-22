@@ -17,15 +17,13 @@ namespace Redacao.API.Controllers.Vestibular
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class VestibularController : BaseController
+    public class VestibularController : BaseController<VestibularVestibular>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<VestibularVestibular> _logger;
 
-        public VestibularController(IMediator mediator, ILogger<VestibularVestibular> logger)
+        public VestibularController(IMediator mediator, ILogger<VestibularVestibular> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpPost]
@@ -39,8 +37,7 @@ namespace Redacao.API.Controllers.Vestibular
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<VestibularVestibular>(ex);
             }
         }
 
@@ -55,8 +52,7 @@ namespace Redacao.API.Controllers.Vestibular
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<VestibularVestibular>(ex);
             }
         }
 
@@ -74,8 +70,7 @@ namespace Redacao.API.Controllers.Vestibular
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<VestibularVestibular>(ex);
             }
         }
 
@@ -93,8 +88,7 @@ namespace Redacao.API.Controllers.Vestibular
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<VestibularVestibular>(ex);
             }
         }
     }

@@ -24,11 +24,10 @@ namespace Redacao.API.Controllers.Redacao
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class RedacaoController : BaseController
+    public class RedacaoController : BaseController<RedacaoRedacao>
     {
         private static ConcurrentBag<StreamWriter> _clients = new ConcurrentBag<StreamWriter>();
         private readonly IMediator _mediator;
-        private readonly ILogger<RedacaoRedacao> _logger;
         private readonly IHubContext<RedacaoHub> _redacaoHub;
         private readonly IRedacaoRepositorio _redacaoRepositorio;
 
@@ -36,10 +35,9 @@ namespace Redacao.API.Controllers.Redacao
         public RedacaoController(IMediator mediator, 
                                  ILogger<RedacaoRedacao> logger,
                                  IHubContext<RedacaoHub> redacaoHub,
-                                 IRedacaoRepositorio redacaoRepositorio)
+                                 IRedacaoRepositorio redacaoRepositorio) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
             _redacaoHub = redacaoHub;
             _redacaoRepositorio = redacaoRepositorio;
         }
@@ -55,8 +53,7 @@ namespace Redacao.API.Controllers.Redacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<RedacaoRedacao>(ex);
             }
         }
 
@@ -72,8 +69,7 @@ namespace Redacao.API.Controllers.Redacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<RedacaoRedacao>(ex);
             }
         }
 
@@ -88,8 +84,7 @@ namespace Redacao.API.Controllers.Redacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<RedacaoRedacao>(ex);
             }
         }
 
@@ -106,8 +101,7 @@ namespace Redacao.API.Controllers.Redacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<RedacaoRedacao>(ex);
             }
         }
 
@@ -124,8 +118,7 @@ namespace Redacao.API.Controllers.Redacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<RedacaoRedacao>(ex);
             }
         }
 
@@ -141,8 +134,7 @@ namespace Redacao.API.Controllers.Redacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<RedacaoRedacao>(ex);
             }
         }
 
@@ -158,8 +150,7 @@ namespace Redacao.API.Controllers.Redacao
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<RedacaoRedacao>(ex);
             }
         }
 

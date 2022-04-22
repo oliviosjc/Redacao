@@ -15,17 +15,14 @@ namespace Redacao.API.Controllers.Usuario
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
-    public class UsuarioController : BaseController 
+    public class UsuarioController : BaseController<UsuarioUsuario>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<UsuarioUsuario> _logger;
-
 
         public UsuarioController(IMediator mediator,
-                                 ILogger<UsuarioUsuario> logger)
+                                 ILogger<UsuarioUsuario> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpPost("{id}/organizacoes")]
@@ -40,8 +37,7 @@ namespace Redacao.API.Controllers.Usuario
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
-                return await RetornoBase(ex);
+                return await RetornoBase<UsuarioUsuario>(ex);
             }
         }
     }
