@@ -14,6 +14,11 @@ namespace Redacao.Application.Queries.Redacao
 
         }
 
+        public BuscarRedacaoPorIdQuery(Int32 id)
+        {
+            this.Id = id;
+        }
+
         public Int32 Id { get; set; }
     }
 }

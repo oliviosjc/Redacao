@@ -25,7 +25,5 @@ namespace Redacao.Application.Commands.Organizacao
         public string CorSecundaria { get; set; }
 
         public TipoOrganizacaoEnum TipoOrganizacao { get; set; }
-
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
     }
 }

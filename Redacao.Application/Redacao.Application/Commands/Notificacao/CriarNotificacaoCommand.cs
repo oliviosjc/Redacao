@@ -20,7 +20,5 @@ namespace Redacao.Application.Commands.Notificacao
         public TipoNotificacaoEnum TipoNotificacao { get; set; }
 
         public Int32 UsuarioId { get; set; }
-
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
     }
 }

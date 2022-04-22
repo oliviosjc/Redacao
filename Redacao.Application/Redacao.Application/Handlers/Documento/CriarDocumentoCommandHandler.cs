@@ -4,6 +4,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Redacao.Application.Commands.Documento;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Documento;
@@ -23,12 +24,15 @@ namespace Redacao.Application.Handlers.Documento
     {
         private readonly IRepositorioGenerico<DocumentoDocumento> _repositorioDocumento;
         private readonly IAzureBlobStorageService _azureBlobStorageService;
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
 
         public CriarDocumentoCommandHandler(IRepositorioGenerico<DocumentoDocumento> repositorioDocumento,
-                                            IAzureBlobStorageService azureBlobStorageService)
+                                            IAzureBlobStorageService azureBlobStorageService,
+                                            UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioDocumento = repositorioDocumento;
             _azureBlobStorageService = azureBlobStorageService;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<DocumentoDocumento>> Handle(CriarDocumentoCommand request, CancellationToken cancellationToken)
@@ -38,7 +42,7 @@ namespace Redacao.Application.Handlers.Documento
                 var documentoCloud = await _azureBlobStorageService.CriarDocumento(request.Arquivo);
 
                 var documento = new DocumentoDocumento(documentoCloud.NomeArquivo, documentoCloud.NomeArquivoCloud, documentoCloud.Extensao, 
-                                                       documentoCloud.Tamanho, request.TemaId, request.RedacaoId, 0, request.UsuarioLogado.Id, 
+                                                       documentoCloud.Tamanho, request.TemaId, request.RedacaoId, 0, _usuarioLogado.Id, 
                                                        DateTime.Now, null, true);
 
                 var documentoValido = await documento.ValidaObjeto(documento);

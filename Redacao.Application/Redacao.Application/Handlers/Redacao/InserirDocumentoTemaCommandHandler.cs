@@ -5,6 +5,7 @@ using Microsoft.WindowsAzure.Storage.Blob;
 using Redacao.Application.Commands.Documento;
 using Redacao.Application.Commands.Redacao;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Documento;
@@ -45,8 +46,7 @@ namespace Redacao.Application.Handlers.Redacao
                 {
                     Arquivo = request.Arquivo,
                     RedacaoId = null,
-                    TemaId = request.TemaId,
-                    UsuarioLogado = request.UsuarioLogado
+                    TemaId = request.TemaId
                 };
 
                 var resultado = await _mediator.Send(criarDocumentoCommand);

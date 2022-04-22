@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Redacao.Application.Commands.Vestibular;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Vestibular;
@@ -17,17 +18,20 @@ namespace Redacao.Application.Handlers.Vestibular
     public class CriarVestibularCommandHandler : IRequestHandler<CriarVestibularCommand, ResponseViewModel<string>>
     {
         private readonly IRepositorioGenerico<VestibularVestibular> _repositorioVestibular;
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
 
-        public CriarVestibularCommandHandler(IRepositorioGenerico<VestibularVestibular> repositorioVestibular)
+        public CriarVestibularCommandHandler(IRepositorioGenerico<VestibularVestibular> repositorioVestibular,
+                                             UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioVestibular = repositorioVestibular;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<string>> Handle(CriarVestibularCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var vestibular = new VestibularVestibular(request.Nome, request.Descricao, 0, request.UsuarioLogado.Id, DateTime.UtcNow, null, true);
+                var vestibular = new VestibularVestibular(request.Nome, request.Descricao, request.DataProva, 0, _usuarioLogado.Id, DateTime.UtcNow, null, true);
 
                 var validacaoVestibular = await vestibular.ValidaObjeto(vestibular);
 

@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace Redacao.API.Controllers.Usuario
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
     public class UsuarioController : BaseController 
     {
@@ -33,7 +34,6 @@ namespace Redacao.API.Controllers.Usuario
             try
             {
                 command.UsuarioId = id;
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);

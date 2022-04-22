@@ -33,7 +33,9 @@ namespace Redacao.Application.Handlers.Vestibular
                 if (vestibular is null)
                     return ResponseReturnHelper<string>.GerarRetorno(HttpStatusCode.BadRequest, "Nenhum vestibular foi encontrado na base de dados com este Id. Tente novamente.");
 
-                vestibular = new VestibularVestibular(request.Nome, request.Descricao, vestibular.Id, request.UsuarioLogado.Id, vestibular.CriadoEm, DateTime.UtcNow, true);
+                vestibular = new VestibularVestibular(request.Nome, request.Descricao, request.DataProva,
+                                                     vestibular.Id, vestibular.UsuarioCriadorId, vestibular.CriadoEm, 
+                                                     DateTime.UtcNow, true);
 
                 var validacaoVestibular = await vestibular.ValidaObjeto(vestibular);
 

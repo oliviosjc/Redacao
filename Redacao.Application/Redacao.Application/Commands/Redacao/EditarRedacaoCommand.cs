@@ -21,7 +21,5 @@ namespace Redacao.Application.Commands.Redacao
         public Int32 TemaRedacaoId { get; set; }
 
         public Int32 VestibularId { get; set; }
-
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
     }
 }

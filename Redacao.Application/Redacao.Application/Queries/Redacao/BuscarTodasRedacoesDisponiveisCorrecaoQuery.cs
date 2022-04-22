@@ -15,6 +15,11 @@ namespace Redacao.Application.Queries.Redacao
 
         }
 
+        public BuscarTodasRedacoesDisponiveisCorrecaoQuery(RequestPaginacao paginacao)
+        {
+            this.Paginacao = paginacao;
+        }
+
         public RequestPaginacao Paginacao { get; set; }
     }
 }

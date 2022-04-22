@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Redacao.Application.Commands;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Base;
@@ -20,19 +21,22 @@ namespace Redacao.Application.Handlers.Redacao
     {
         private readonly IRepositorioGenerico<TemaRedacao> _repositorioTemaRedacao;
         private readonly IRepositorioGenerico<VestibularVestibular> _repositorioVestibular;
-
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
         public CriarTemaRedacaoCommandHandler(IRepositorioGenerico<TemaRedacao> repositorioTemaRedacao,
-                                              IRepositorioGenerico<VestibularVestibular> repositorioVestibular)
+                                              IRepositorioGenerico<VestibularVestibular> repositorioVestibular,
+                                              UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioTemaRedacao = repositorioTemaRedacao;
             _repositorioVestibular = repositorioVestibular;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<string>> Handle(CriarTemaRedacaoCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var tema = new TemaRedacao(request.Nome, request.Descricao, 0, request.UsuarioLogado.Id, DateTime.UtcNow, null, true);
+                var tema = new TemaRedacao(request.Nome, request.Descricao, request.CategoriaId, 0, 
+                                           _usuarioLogado.Id, DateTime.UtcNow, null, true);
 
                 var temaValido = await tema.ValidaObjeto(tema);
 

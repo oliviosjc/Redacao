@@ -31,7 +31,9 @@ namespace Redacao.Application.Handlers.Usuario.Identity
                 if(usuario is null)
                     return ResponseReturnHelper<string>.GerarRetorno(HttpStatusCode.BadRequest, "O usuário que deseja editar não existe na base de dados :/ Tente novamente.");
 
-                usuario = new UsuarioUsuario(request.Nome, request.CPF, request.RG, request.CNPJ, usuario.TipoUsuario, usuario.PhoneNumber, usuario.Email, usuario.QuantidadeCorrecoesDisponiveis, usuario.Id);
+                usuario = new UsuarioUsuario(request.Nome, request.Apelido, request.CPF, request.RG, request.DataNascimento, request.CEP,
+                    request.Rua, request.Bairro, request.Numero, request.Complemento, request.Cidade, request.Estado, request.Sexo, request.ComoConheceu,
+                    request.CNPJ, TipoUsuarioEnum.ALUNO, usuario.PhoneNumber, usuario.Email, usuario.QuantidadeCorrecoesDisponiveis, usuario.Id);
 
                 var usuarioValido = await usuario.ValidaObjeto(usuario);
 

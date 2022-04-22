@@ -1,20 +1,21 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Redacao.Application.DTOs.Usuario.Identity;
+using Redacao.Application.Handlers.Categoria;
 using Redacao.Application.Handlers.Documento;
 using Redacao.Application.Handlers.Notificacao;
 using Redacao.Application.Handlers.Organizacao;
 using Redacao.Application.Handlers.Redacao;
+using Redacao.Application.Handlers.Suporte.Sugestao;
 using Redacao.Application.Handlers.Usuario;
 using Redacao.Application.Handlers.Usuario.Identity;
 using Redacao.Application.Handlers.Vestibular;
 using Redacao.Application.Notifications.Usuario.Identity;
 using Redacao.Data.Repositorios;
 using Redacao.Data.Repositorios.Dapper;
-using Redacao.Domain.Entidades.Usuario;
 using Redacao.Domain.Repositorios;
 using Redacao.Domain.Repositorios.Dapper;
 using Redacao.Infra.Cloud.Azure.Services;
@@ -38,6 +39,12 @@ namespace Redacao.API.Helper
             // HANDLERS
             services.AddMediatR(typeof(Startup));
 
+            services.AddMediatR(typeof(CriarCategoriaCommandHandler));
+            services.AddMediatR(typeof(EditarCategoriaCommandHandler));
+            services.AddMediatR(typeof(BuscarTodasCategoriasPorTipoQueryHandler));
+            services.AddMediatR(typeof(BuscarTodasCategoriasQueryHandler));
+            services.AddMediatR(typeof(BuscarCategoriaPorIdQueryHandler));
+
             services.AddMediatR(typeof(CriarDocumentoCommandHandler));
 
             services.AddMediatR(typeof(BuscarOrganizacaoPorIdQueryHandler));
@@ -59,14 +66,25 @@ namespace Redacao.API.Helper
             services.AddMediatR(typeof(InserirDocumentoTemaCommandHandler));
             services.AddMediatR(typeof(ProfessorGarantirCorrecaoCommandHandler));
 
+            services.AddMediatR(typeof(CriarSugestaoCommandHandler));
+            services.AddMediatR(typeof(EditarSugestaoCommandHandler));
+            services.AddMediatR(typeof(BuscarMinhasSugestoesQueryHandler));
+            services.AddMediatR(typeof(BuscarSugestaoPorIdQueryHandler));
+            services.AddMediatR(typeof(BuscarTodasSugestoesQueryHandler));
+
+            services.AddMediatR(typeof(BuscarRolesUsuarioLogadoQueryHandler));
+            services.AddMediatR(typeof(BuscarTodasRolesQueryHandler));
+            services.AddMediatR(typeof(CriarRoleCommandHandler));
             services.AddMediatR(typeof(CriarUsuarioCommandHandler));
-            services.AddMediatR(typeof(EditarUsuarioCommandHandler));
             services.AddMediatR(typeof(CriarUsuarioNotificationHandler));
             services.AddMediatR(typeof(DesabilitarUsuarioCommandHandler));
+            services.AddMediatR(typeof(EditarUsuarioCommandHandler));
+            services.AddMediatR(typeof(CriarUsuarioNotificationHandler));
             services.AddMediatR(typeof(GerarTokenUsuarioCommandHandler));
             services.AddMediatR(typeof(RealizarLoginUsuarioCommandHandler));
             services.AddMediatR(typeof(RecuperarSenhaCommandHandler));
             services.AddMediatR(typeof(ResetarSenhaCommandHandler));
+            services.AddMediatR(typeof(SetarRolesUsuarioCommandHandler));
             services.AddMediatR(typeof(VincularOrganizacoesAUsuarioCommandHandler));
 
             services.AddMediatR(typeof(BuscarTodosVestibularesQueryHandler));
@@ -94,9 +112,9 @@ namespace Redacao.API.Helper
             services.AddHostedService<ConsumidorFilaUsuarioCorrecaoDisponivel>();
 
             //
-            UsuarioLogadoMiddlewareModel usuarioLogado = new UsuarioLogadoMiddlewareModel(1);
+            services.AddHttpContextAccessor();
 
-            services.AddTransient(usuarioLogado => new UsuarioLogadoMiddlewareModel());
+            services.AddTransient(provider => new UsuarioLogadoMiddlewareModel(provider.GetService<IHttpContextAccessor>().HttpContext));
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Redacao.Application.Commands.Organizacao;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Base;
@@ -19,9 +20,12 @@ namespace Redacao.Application.Handlers.Organizacao
     public class CriarOrganizacaoCommandHandler : IRequestHandler<CriarOrganizacaoCommand, ResponseViewModel<string>>
     {
         private readonly IRepositorioGenerico<OrganizacaoOrganizacao> _repositorioOrganizacao;
-        public CriarOrganizacaoCommandHandler(IRepositorioGenerico<OrganizacaoOrganizacao> repositorioOrganizacao)
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
+        public CriarOrganizacaoCommandHandler(IRepositorioGenerico<OrganizacaoOrganizacao> repositorioOrganizacao,
+                                              UsuarioLogadoMiddlewareModel usuarioLogado)       
         {
             _repositorioOrganizacao = repositorioOrganizacao;
+            _usuarioLogado = usuarioLogado;
         }
         public async Task<ResponseViewModel<string>> Handle(CriarOrganizacaoCommand request, CancellationToken cancellationToken)
         {
@@ -30,7 +34,7 @@ namespace Redacao.Application.Handlers.Organizacao
             {
                 var organizacao = new OrganizacaoOrganizacao(request.Nome, request.Descricao, request.CorPrimaria, 
                                                              request.CorSecundaria, Guid.NewGuid(), request.TipoOrganizacao, 
-                                                             0, request.UsuarioLogado.Id, DateTime.Now, null, true);
+                                                             0, _usuarioLogado.Id, DateTime.Now, null, true);
 
                 var organizacaoValida = await organizacao.ValidaObjeto(organizacao);
 

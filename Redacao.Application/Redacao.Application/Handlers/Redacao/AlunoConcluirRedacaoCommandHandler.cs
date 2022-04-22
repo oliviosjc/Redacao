@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Redacao.Application.Commands.Redacao;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Application.Notifications.Redacao;
@@ -20,12 +21,15 @@ namespace Redacao.Application.Handlers.Redacao
     {
         private readonly IRepositorioGenerico<RedacaoRedacao> _repositorioRedacao;
         private readonly IMediator _mediator;
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
 
         public AlunoConcluirRedacaoCommandHandler(IRepositorioGenerico<RedacaoRedacao> repositorioRedacao,
-                                                  IMediator mediator)
+                                                  IMediator mediator,
+                                                  UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioRedacao = repositorioRedacao;
             _mediator = mediator;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<string>> Handle(AlunoConcluirRedacaoCommand request, CancellationToken cancellationToken)

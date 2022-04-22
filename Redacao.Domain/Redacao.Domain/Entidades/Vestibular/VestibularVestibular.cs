@@ -18,6 +18,7 @@ namespace Redacao.Domain.Entidades.Vestibular
         }
 
         public VestibularVestibular(string nome, string descricao,
+                                    DateTime dataProva,
                                     Int32 id, Int32 usuarioCriadorId, 
                                     DateTime criadoEm, DateTime? modificadoEm,
                                     bool ativo)
@@ -29,11 +30,14 @@ namespace Redacao.Domain.Entidades.Vestibular
             this.SetarModificadoEm(modificadoEm);
             this.SetarUsuarioCriadorId(usuarioCriadorId);
             this.SetarAtivo(ativo);
+            this.SetarDataProva(dataProva);
         }
 
         public string Nome { get; private set; }
 
         public string Descricao { get; private set; }
+
+        public DateTime DataProva { get; private set; }
 
         public virtual ICollection<VestibularTema> Temas { get; private set; }
 
@@ -45,6 +49,11 @@ namespace Redacao.Domain.Entidades.Vestibular
         private void SetarDescricao(string descricao)
         {
             this.Descricao = descricao;
+        }
+
+        private void SetarDataProva(DateTime dataProva)
+        {
+            this.DataProva = dataProva;
         }
 
         public async Task<ValidationResult> ValidaObjeto(VestibularVestibular objeto)

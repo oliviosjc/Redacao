@@ -16,7 +16,7 @@ namespace Redacao.Application.Notifications.Redacao
 
         public AlunoConcluirRedacaoNotification(AlunoConcluirRedacaoCommand command)
         {
-            this.Model = new AtualizarUsuarioCorrecaoDisponivelModel(command.UsuarioLogado.Id, 1, false);
+            this.Model = new AtualizarUsuarioCorrecaoDisponivelModel(1, false);
         }
 
         public AtualizarUsuarioCorrecaoDisponivelModel Model { get; set; }

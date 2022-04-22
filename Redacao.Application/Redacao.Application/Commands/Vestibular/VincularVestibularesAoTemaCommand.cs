@@ -16,6 +16,5 @@ namespace Redacao.Application.Commands.Vestibular
 
         public Int32 TemaId { get; set; }
         public List<Int32> VestibularesIds { get; set; }
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
     }
 }

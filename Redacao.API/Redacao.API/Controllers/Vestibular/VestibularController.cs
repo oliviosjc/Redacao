@@ -14,7 +14,8 @@ using System.Threading.Tasks;
 
 namespace Redacao.API.Controllers.Vestibular
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
     public class VestibularController : BaseController
     {
@@ -32,7 +33,6 @@ namespace Redacao.API.Controllers.Vestibular
         {
             try
             {
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);
@@ -49,7 +49,6 @@ namespace Redacao.API.Controllers.Vestibular
         {
             try
             {
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);

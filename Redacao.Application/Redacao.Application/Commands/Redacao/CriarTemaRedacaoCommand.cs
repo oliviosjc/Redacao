@@ -18,8 +18,8 @@ namespace Redacao.Application.Commands
 
         public string Descricao { get; set; }
 
-        public Int32 VestibularId { get; set; }
+        public Int32 CategoriaId { get; set; }
 
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
+        public Int32 VestibularId { get; set; }
     }
 }

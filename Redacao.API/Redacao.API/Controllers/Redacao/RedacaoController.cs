@@ -21,7 +21,8 @@ using System.Threading.Tasks;
 
 namespace Redacao.API.Controllers.Redacao
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
     public class RedacaoController : BaseController
     {
@@ -48,7 +49,6 @@ namespace Redacao.API.Controllers.Redacao
         {
             try
             {
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);
@@ -65,12 +65,9 @@ namespace Redacao.API.Controllers.Redacao
         {
             try
             {
-                AlunoConcluirRedacaoCommand command = new AlunoConcluirRedacaoCommand();
-                command.Id = id;
-                command.UsuarioLogado = await BuscarUsuarioLogado();
+                AlunoConcluirRedacaoCommand command = new AlunoConcluirRedacaoCommand(id);
 
                 var resultado = await _mediator.Send(command);
-
                 return await RetornoBase(resultado);
             }
             catch (Exception ex)
@@ -85,7 +82,6 @@ namespace Redacao.API.Controllers.Redacao
         {
             try
             {
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);
@@ -102,8 +98,7 @@ namespace Redacao.API.Controllers.Redacao
         {
             try
             {
-                BuscarTodasRedacoesQuery query = new BuscarTodasRedacoesQuery();
-                query.Paginacao = paginacao;
+                BuscarTodasRedacoesQuery query = new BuscarTodasRedacoesQuery(paginacao);
 
                 var resultado = await _mediator.Send(query);
 
@@ -121,8 +116,7 @@ namespace Redacao.API.Controllers.Redacao
         {
             try
             {
-                BuscarRedacaoPorIdQuery query = new BuscarRedacaoPorIdQuery();
-                query.Id = id;
+                BuscarRedacaoPorIdQuery query = new BuscarRedacaoPorIdQuery(id);
 
                 var resultado = await _mediator.Send(query);
 
@@ -140,8 +134,7 @@ namespace Redacao.API.Controllers.Redacao
         {
             try
             {
-                BuscarTodasRedacoesDisponiveisCorrecaoQuery query = new BuscarTodasRedacoesDisponiveisCorrecaoQuery();
-                query.Paginacao = paginacao;
+                BuscarTodasRedacoesDisponiveisCorrecaoQuery query = new BuscarTodasRedacoesDisponiveisCorrecaoQuery(paginacao);
 
                 var resultado = await _mediator.Send(query);
                 return await RetornoBase(resultado);
@@ -158,9 +151,7 @@ namespace Redacao.API.Controllers.Redacao
         {
             try
             {
-                ProfessorGarantirCorrecaoCommand command = new ProfessorGarantirCorrecaoCommand();
-                command.Id = id;
-                command.UsuarioLogado = await BuscarUsuarioLogado();
+                ProfessorGarantirCorrecaoCommand command = new ProfessorGarantirCorrecaoCommand(id);
 
                 var resultado = await _mediator.Send(command);
                 return await RetornoBase(resultado);

@@ -14,8 +14,11 @@ namespace Redacao.Application.Commands.Redacao
 
         }
 
-        public Int32 Id { get; set; }
+        public AlunoConcluirRedacaoCommand(Int32 id)
+        {
+            this.Id = id;
+        }
 
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
+        public Int32 Id { get; set; }
     }
 }

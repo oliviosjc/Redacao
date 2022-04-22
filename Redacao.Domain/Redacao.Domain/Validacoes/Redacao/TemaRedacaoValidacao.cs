@@ -10,7 +10,8 @@ namespace Redacao.Domain.Validacoes.Redacao
     {
         public TemaRedacaoValidacao()
         {
-            RuleFor(r => r.Id).NotNull();
+            RuleFor(r => r.Nome).NotEmpty().NotNull().MaximumLength(255);
+            RuleFor(r => r.CategoriaId).NotNull().NotEmpty();
         }
     }
 }

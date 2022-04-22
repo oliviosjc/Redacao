@@ -12,6 +12,7 @@ namespace Redacao.Domain.Validacoes.Vestibular
         {
             RuleFor(r => r.Nome).NotNull().NotEmpty().MaximumLength(255);
             RuleFor(r => r.Descricao).NotNull().NotEmpty().MaximumLength(255);
+            RuleFor(r => r.DataProva).NotNull().NotEmpty();
         }
     }
 }

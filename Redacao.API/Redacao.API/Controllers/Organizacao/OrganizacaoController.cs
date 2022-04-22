@@ -14,8 +14,8 @@ using System.Threading.Tasks;
 
 namespace Redacao.API.Controllers.Organizacao
 {
-    [Authorize(AuthenticationSchemes = "Bearer")]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
     public class OrganizacaoController : BaseController
     {
@@ -33,7 +33,6 @@ namespace Redacao.API.Controllers.Organizacao
         {
             try
             {
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);
@@ -66,8 +65,7 @@ namespace Redacao.API.Controllers.Organizacao
         {
             try
             {
-                BuscarTodasOrganizacoesQuery query = new BuscarTodasOrganizacoesQuery();
-                query.Paginacao = paginacao;
+                BuscarTodasOrganizacoesQuery query = new BuscarTodasOrganizacoesQuery(paginacao);
 
                 var resultado = await _mediator.Send(query);
 
@@ -85,8 +83,7 @@ namespace Redacao.API.Controllers.Organizacao
         {
             try
             {
-                BuscarOrganizacaoPorIdQuery query = new BuscarOrganizacaoPorIdQuery();
-                query.Id = id;
+                BuscarOrganizacaoPorIdQuery query = new BuscarOrganizacaoPorIdQuery(id);
 
                 var resultado = await _mediator.Send(query);
 

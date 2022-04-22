@@ -11,9 +11,8 @@ namespace Redacao.Infra.Cloud.Azure.Services.ServiceBus.Model
 
         }
 
-        public AtualizarUsuarioCorrecaoDisponivelModel(Int32 usuarioId, Int32 quantidade, bool adicionar)
+        public AtualizarUsuarioCorrecaoDisponivelModel(Int32 quantidade, bool adicionar)
         {
-            this.UsuarioId = usuarioId;
             this.Quantidade = quantidade;
             this.Adicionar = adicionar;
         }

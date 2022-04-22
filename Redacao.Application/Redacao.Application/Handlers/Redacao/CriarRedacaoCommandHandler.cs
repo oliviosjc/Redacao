@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Redacao.Application.Commands.Redacao;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Redacao;
@@ -20,12 +21,15 @@ namespace Redacao.Application.Handlers.Redacao
     {
         private readonly IRepositorioGenerico<RedacaoRedacao> _repositorioRedacao;
         private readonly IRepositorioGenerico<VestibularTema> _repositorioVestibularTema;
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
 
         public CriarRedacaoCommandHandler(IRepositorioGenerico<RedacaoRedacao> repositorioRedacao,
-                                          IRepositorioGenerico<VestibularTema> repositorioVestibularTema)
+                                          IRepositorioGenerico<VestibularTema> repositorioVestibularTema,
+                                          UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioRedacao = repositorioRedacao;
             _repositorioVestibularTema = repositorioVestibularTema;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<string>> Handle(CriarRedacaoCommand request, CancellationToken cancellationToken)
@@ -39,8 +43,8 @@ namespace Redacao.Application.Handlers.Redacao
                     return ResponseReturnHelper<string>.GerarRetorno(HttpStatusCode.BadRequest, "O vinculo deste tema para este vestibular não existe. Tente novamente!");
 
                 var redacao = new RedacaoRedacao(request.Descricao, request.TemaRedacaoId, request.VestibularId, 
-                                                 request.UsuarioLogado.Id, null, TipoRedacaoEnum.DEFAULT, StatusRedacaoEnum.CRIADA,
-                                                 0, request.UsuarioLogado.Id, DateTime.UtcNow, null, true);
+                                                 _usuarioLogado.Id, null, TipoRedacaoEnum.DEFAULT, StatusRedacaoEnum.CRIADA,
+                                                 0, _usuarioLogado.Id, DateTime.UtcNow, null, true);
 
                 var redacaoValida = await redacao.ValidaObjeto(redacao);
 

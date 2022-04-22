@@ -37,7 +37,10 @@ namespace Redacao.Application.Handlers.Usuario.Identity
         {
             try
             {
-                var usuario = new UsuarioUsuario(request.Nome, request.CPF, request.RG, request.CNPJ, TipoUsuarioEnum.ALUNO, request.NumeroCelular, request.Email, 0, 0);
+                var usuario = new UsuarioUsuario(request.Nome, null, request.CPF, request.RG,
+                                                 null, null, null, null, null, null, null, null,
+                                                 null, null, request.CNPJ, TipoUsuarioEnum.ALUNO, 
+                                                 request.NumeroCelular, request.Email, 0, 0);
 
                 var usuarioValido = await usuario.ValidaObjeto(usuario);
 

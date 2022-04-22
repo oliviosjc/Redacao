@@ -16,10 +16,14 @@ namespace Redacao.Application.Commands.Redacao
 
         }
 
+        public InserirDocumentoTemaCommand(Int32 temaId, IFormFile arquivo)
+        {
+            this.Arquivo = arquivo;
+            this.TemaId = temaId;
+        }
+
         public IFormFile Arquivo { get; set; }
 
         public Int32 TemaId { get; set; }
-
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
     }
 }

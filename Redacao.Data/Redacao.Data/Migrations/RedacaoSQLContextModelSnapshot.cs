@@ -253,6 +253,40 @@ namespace Redacao.Data.Migrations
                     b.ToTable("AvaliacaoRedacaoRespostaAlunos");
                 });
 
+            modelBuilder.Entity("Redacao.Domain.Entidades.Categoria.CategoriaCategoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("TipoCategoria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.ToTable("Categorias");
+                });
+
             modelBuilder.Entity("Redacao.Domain.Entidades.Documento.DocumentoDocumento", b =>
                 {
                     b.Property<int>("Id")
@@ -472,6 +506,9 @@ namespace Redacao.Data.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
@@ -493,9 +530,48 @@ namespace Redacao.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoriaId");
+
                     b.HasIndex("UsuarioCriadorId");
 
                     b.ToTable("TemasRedacao");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Suporte.Sugestao.SugestaoSugestao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("ModificadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioCriadorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioCriadorId");
+
+                    b.ToTable("Sugestoes");
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Usuario.Role", b =>
@@ -672,6 +748,18 @@ namespace Redacao.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Apelido")
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
+
+                    b.Property<string>("Bairro")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("CEP")
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
                     b.Property<string>("CNPJ")
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
@@ -680,9 +768,23 @@ namespace Redacao.Data.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
+                    b.Property<string>("Cidade")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int?>("ComoConheceu")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Complemento")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DataNascimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -690,6 +792,10 @@ namespace Redacao.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Estado")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -710,6 +816,10 @@ namespace Redacao.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("Numero")
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -726,8 +836,15 @@ namespace Redacao.Data.Migrations
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
+                    b.Property<string>("Rua")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Sexo")
+                        .HasColumnType("int");
 
                     b.Property<int>("TipoUsuario")
                         .HasColumnType("int");
@@ -799,6 +916,9 @@ namespace Redacao.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataProva")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
@@ -930,6 +1050,17 @@ namespace Redacao.Data.Migrations
                     b.Navigation("UsuarioCriador");
                 });
 
+            modelBuilder.Entity("Redacao.Domain.Entidades.Categoria.CategoriaCategoria", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UsuarioCriador");
+                });
+
             modelBuilder.Entity("Redacao.Domain.Entidades.Documento.DocumentoDocumento", b =>
                 {
                     b.HasOne("Redacao.Domain.Entidades.Redacao.RedacaoRedacao", "Redacao")
@@ -1022,6 +1153,25 @@ namespace Redacao.Data.Migrations
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Redacao.TemaRedacao", b =>
+                {
+                    b.HasOne("Redacao.Domain.Entidades.Categoria.CategoriaCategoria", "Categoria")
+                        .WithMany("TemasRedacoes")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCriadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Suporte.Sugestao.SugestaoSugestao", b =>
                 {
                     b.HasOne("Redacao.Domain.Entidades.Usuario.UsuarioUsuario", "UsuarioCriador")
                         .WithMany()
@@ -1166,6 +1316,11 @@ namespace Redacao.Data.Migrations
             modelBuilder.Entity("Redacao.Domain.Entidades.Avaliacao.AvaliacaoRedacaoPerguntaResposta", b =>
                 {
                     b.Navigation("AvaliacaoRedacaoRespostaAlunos");
+                });
+
+            modelBuilder.Entity("Redacao.Domain.Entidades.Categoria.CategoriaCategoria", b =>
+                {
+                    b.Navigation("TemasRedacoes");
                 });
 
             modelBuilder.Entity("Redacao.Domain.Entidades.Organizacao.OrganizacaoOrganizacao", b =>

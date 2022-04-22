@@ -22,7 +22,14 @@ namespace Redacao.Domain.Entidades.Usuario
 
         }
 
-        public UsuarioUsuario(string nome, string cpf, string rg, string cnpj, TipoUsuarioEnum tipoUsuario, string numeroCelular, string email, Int32 quantidadeCorrecoesDisponiveis, Int32 id)
+        public UsuarioUsuario(string nome, string apelido, string cpf, 
+                             string rg, DateTime? dataNascimento, string cep,
+                             string rua, string bairro, string numero, string complemento,
+                             string cidade, string estado, UsuarioSexoEnum? sexo,
+                             UsuarioComoConheceuEnum? comoConheceu,
+                             string cnpj, TipoUsuarioEnum tipoUsuario, 
+                             string numeroCelular, string email, 
+                             Int32 quantidadeCorrecoesDisponiveis, Int32 id)
         {
             this.SetarId(id);
             this.SetarCPF(cpf);
@@ -30,7 +37,18 @@ namespace Redacao.Domain.Entidades.Usuario
             this.SetarRG(rg);
             this.SetarTipoUsuario(tipoUsuario);
             this.SetarNome(nome);
+            this.SetarApelido(apelido);
             this.SetarQuantidadeCorrecoesDisponiveis(quantidadeCorrecoesDisponiveis);
+            this.SetarDataNascimento(dataNascimento);
+            this.SetarCEP(cep);
+            this.SetarRua(rua);
+            this.SetarBairro(bairro);
+            this.SetarNumero(numero);
+            this.SetarComplemento(complemento);
+            this.SetarCidade(cidade);
+            this.SetarEstado(estado);
+            this.SetarSexo(sexo);
+            this.SetarComoConheceu(comoConheceu);
             this.PhoneNumber = numeroCelular;
             this.Email = email;
             this.NormalizedEmail = email;
@@ -41,6 +59,36 @@ namespace Redacao.Domain.Entidades.Usuario
         [Required]
         [StringLength(128)]
         public string Nome { get; private set; }
+
+        [StringLength(55)]
+        public string Apelido { get; private set; }
+
+        public DateTime? DataNascimento { get; private set; }
+
+        [StringLength(8)]
+        public string CEP { get; private set; }
+
+        [StringLength(128)]
+        public string Rua { get; private set; }
+
+        [StringLength(128)]
+        public string Bairro { get; private set; }
+
+        [StringLength(5)]
+        public string Numero { get; private set; }
+
+        [StringLength(50)]
+        public string Complemento { get; private set; }
+
+        [StringLength(128)]
+        public string Cidade { get; private set; }
+
+        [StringLength(64)]
+        public string Estado { get; private set; }
+
+        public UsuarioSexoEnum? Sexo { get; private set; }
+
+        public UsuarioComoConheceuEnum? ComoConheceu { get; private set; }
 
         [StringLength(11)]
         public string CPF { get; private set; }
@@ -88,6 +136,61 @@ namespace Redacao.Domain.Entidades.Usuario
             this.Nome = nome;
         }
 
+        private void SetarApelido(string apelido)
+        {
+            this.Apelido = apelido;
+        }
+
+        private void SetarDataNascimento(DateTime? dataNascimento)
+        {
+            this.DataNascimento = dataNascimento;
+        }
+
+        private void SetarCEP(string cep)
+        {
+            this.CEP = cep;
+        }
+
+        private void SetarRua(string rua)
+        {
+            this.Rua = rua;
+        }
+
+        private void SetarBairro(string bairro)
+        {
+            this.Bairro = bairro;
+        }
+
+        private void SetarNumero(string numero)
+        {
+            this.Numero = numero;
+        }
+
+        private void SetarComplemento(string complemento)
+        {
+            this.Complemento = complemento;
+        }
+
+        private void SetarCidade(string cidade)
+        {
+            this.Cidade = cidade;
+        }
+
+        private void SetarEstado(string estado)
+        {
+            this.Estado = estado;
+        }
+
+        public void SetarSexo(UsuarioSexoEnum? sexo)
+        {
+            this.Sexo = sexo;
+        }
+
+        public void SetarComoConheceu(UsuarioComoConheceuEnum? comoConheceu)
+        {
+            this.ComoConheceu = comoConheceu;
+        }
+
         private void SetarQuantidadeCorrecoesDisponiveis(Int32 quantidadeCorrecoesDisponiveis)
         {
             this.QuantidadeCorrecoesDisponiveis = quantidadeCorrecoesDisponiveis;
@@ -113,6 +216,5 @@ namespace Redacao.Domain.Entidades.Usuario
             UsuarioValidacao validacao = new UsuarioValidacao();
             return await validacao.ValidateAsync(objeto);
         }
-
     }
 }

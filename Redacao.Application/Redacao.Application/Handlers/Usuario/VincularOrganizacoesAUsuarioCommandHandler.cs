@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Redacao.Application.Commands.Usuario;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Usuario;
@@ -19,10 +20,13 @@ namespace Redacao.Application.Handlers.Usuario
     public class VincularOrganizacoesAUsuarioCommandHandler : IRequestHandler<VincularOrganizacoesAUsuarioCommand, ResponseViewModel<string>>
     {
         private readonly IRepositorioGenerico<UsuarioOrganizacao> _repositorioUsuarioOrganizacao;
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
 
-        public VincularOrganizacoesAUsuarioCommandHandler(IRepositorioGenerico<UsuarioOrganizacao> repositorioUsuarioOrganizacao)
+        public VincularOrganizacoesAUsuarioCommandHandler(IRepositorioGenerico<UsuarioOrganizacao> repositorioUsuarioOrganizacao,
+                                                          UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioUsuarioOrganizacao = repositorioUsuarioOrganizacao;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<string>> Handle(VincularOrganizacoesAUsuarioCommand request, CancellationToken cancellationToken)
@@ -38,7 +42,7 @@ namespace Redacao.Application.Handlers.Usuario
 
                 foreach (var organizacaoId in request.OrganizacoesIds.Distinct())
                 {
-                    var usuarioOrganizacao = new UsuarioOrganizacao(request.UsuarioId, organizacaoId, 0, request.UsuarioLogado.Id, DateTime.UtcNow, null, true);
+                    var usuarioOrganizacao = new UsuarioOrganizacao(request.UsuarioId, organizacaoId, 0, _usuarioLogado.Id, DateTime.UtcNow, null, true);
                     var usuarioOrganizacaoValido = await usuarioOrganizacao.ValidaObjeto(usuarioOrganizacao);
 
                     if (usuarioOrganizacaoValido.IsValid)

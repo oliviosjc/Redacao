@@ -18,6 +18,6 @@ namespace Redacao.Application.Commands.Vestibular
 
         public string Descricao { get; set; }
 
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
+        public DateTime DataProva { get; set; }
     }
 }

@@ -8,4 +8,8 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entidades\Suporte\Chamado\" />
+  </ItemGroup>
+
 </Project>

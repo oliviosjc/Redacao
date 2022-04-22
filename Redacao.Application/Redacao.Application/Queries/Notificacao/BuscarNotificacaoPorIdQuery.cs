@@ -14,6 +14,11 @@ namespace Redacao.Application.Queries.Notificacao
 
         }
 
+        public BuscarNotificacaoPorIdQuery(Int32 id)
+        {
+            this.Id = id;
+        }
+
         public Int32 Id { get; set; }
     }
 }

@@ -14,7 +14,11 @@ namespace Redacao.Application.Queries.Redacao
                 
         }
 
-        public RequestPaginacao Paginacao { get; set; }
+        public BuscarTodasRedacoesQuery(RequestPaginacao paginacao)
+        {
+            this.Paginacao = paginacao;
+        }
 
+        public RequestPaginacao Paginacao { get; set; }
     }
 }

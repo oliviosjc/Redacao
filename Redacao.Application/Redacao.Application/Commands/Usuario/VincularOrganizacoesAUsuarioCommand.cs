@@ -17,7 +17,5 @@ namespace Redacao.Application.Commands.Usuario
         public Int32 UsuarioId { get; set; }
 
         public List<Int32> OrganizacoesIds { get; set; }
-
-        public UsuarioLogadoMiddlewareModel UsuarioLogado { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IGgXAsVqMHU4aaM01wNmPAbNjGQa8mIbds4+dxN5NazapmPAVIZNJISF9qIdp/hx3DNF+nS5HV5RM/zWu3U+XQ==",
+  "dgSpecHash": "gx/xTNTWicEV+SVPYSFQLhz715pyCoulYxuLOuOVxsn2oS2v7lbeH3k5BePNytwS+n9lOJMeZPPBxezXsp/ZlQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\olivi\\source\\repos\\Redacao\\Redacao.API\\Redacao.API\\Redacao.API.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,8 @@
     "C:\\Users\\olivi\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.0\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.0.nupkg.sha512",
     "C:\\Users\\olivi\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.0.0\\microsoft.aspnetcore.jsonpatch.3.0.0.nupkg.sha512",
     "C:\\Users\\olivi\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.0.0\\microsoft.aspnetcore.mvc.newtonsoftjson.3.0.0.nupkg.sha512",
+    "C:\\Users\\olivi\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
+    "C:\\Users\\olivi\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning.apiexplorer\\5.0.0\\microsoft.aspnetcore.mvc.versioning.apiexplorer.5.0.0.nupkg.sha512",
     "C:\\Users\\olivi\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\olivi\\.nuget\\packages\\microsoft.azure.amqp\\2.5.10\\microsoft.azure.amqp.2.5.10.nupkg.sha512",
     "C:\\Users\\olivi\\.nuget\\packages\\microsoft.azure.servicebus\\5.2.0\\microsoft.azure.servicebus.5.2.0.nupkg.sha512",

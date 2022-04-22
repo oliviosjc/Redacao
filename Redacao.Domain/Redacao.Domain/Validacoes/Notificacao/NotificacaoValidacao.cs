@@ -10,7 +10,6 @@ namespace Redacao.Domain.Validacoes.Notificacao
     {
         public NotificacaoValidacao()
         {
-            RuleFor(r => r.Visualizada).NotEmpty().NotNull();
             RuleFor(r => r.Mensagem).NotEmpty().NotNull().MaximumLength(255);
             RuleFor(r => r.TipoNotificacao).NotEmpty().NotNull().IsInEnum();
             RuleFor(r => r.UsuarioId).NotNull().NotEmpty();

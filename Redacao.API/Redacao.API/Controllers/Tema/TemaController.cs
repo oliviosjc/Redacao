@@ -16,7 +16,8 @@ using System.Threading.Tasks;
 
 namespace Redacao.API.Controllers.Tema
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/api/[controller]")]
     [ApiController]
     public class TemaController : BaseController
     {
@@ -34,7 +35,6 @@ namespace Redacao.API.Controllers.Tema
         {
             try
             {
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);
@@ -51,7 +51,6 @@ namespace Redacao.API.Controllers.Tema
         {
             try
             {
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);
@@ -68,10 +67,7 @@ namespace Redacao.API.Controllers.Tema
         {
             try
             {
-                InserirDocumentoTemaCommand command = new InserirDocumentoTemaCommand();
-                command.TemaId = id;
-                command.Arquivo = arquivo;
-                command.UsuarioLogado = await this.BuscarUsuarioLogado();
+                InserirDocumentoTemaCommand command = new InserirDocumentoTemaCommand(id, arquivo);
 
                 var resultado = await _mediator.Send(command);
 
@@ -89,8 +85,7 @@ namespace Redacao.API.Controllers.Tema
         {
             try
             {
-                BuscarTodosTemasRedacaoQuery query = new BuscarTodosTemasRedacaoQuery();
-                query.Paginacao = paginacao;
+                BuscarTodosTemasRedacaoQuery query = new BuscarTodosTemasRedacaoQuery(paginacao);
 
                 var resultado = await _mediator.Send(query);
 
@@ -108,8 +103,7 @@ namespace Redacao.API.Controllers.Tema
         {
             try
             {
-                BuscarTemaRedacaoPorIdQuery query = new BuscarTemaRedacaoPorIdQuery();
-                query.Id = id;
+                BuscarTemaRedacaoPorIdQuery query = new BuscarTemaRedacaoPorIdQuery(id);
 
                 var resultado = await _mediator.Send(query);
 
@@ -128,7 +122,6 @@ namespace Redacao.API.Controllers.Tema
             try
             {
                 command.TemaId = id;
-                command.UsuarioLogado = await BuscarUsuarioLogado();
                 var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);

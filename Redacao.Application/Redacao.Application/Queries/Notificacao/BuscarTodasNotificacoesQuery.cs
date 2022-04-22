@@ -14,6 +14,11 @@ namespace Redacao.Application.Queries.Notificacao
 
         }
 
+        public BuscarTodasNotificacoesQuery(RequestPaginacao paginacao)
+        {
+            this.Paginacao = paginacao;
+        }
+
         public RequestPaginacao Paginacao { get; set; }
     }
 }

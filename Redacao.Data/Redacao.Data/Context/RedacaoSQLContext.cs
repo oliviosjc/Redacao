@@ -1,18 +1,22 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Redacao.Data.Mappings.Avaliacao;
+using Redacao.Data.Mappings.Categoria;
 using Redacao.Data.Mappings.Documento;
 using Redacao.Data.Mappings.Notificacao;
 using Redacao.Data.Mappings.Organizacao;
 using Redacao.Data.Mappings.Redacao;
+using Redacao.Data.Mappings.Suporte.Sugestao;
 using Redacao.Data.Mappings.Usuario;
 using Redacao.Data.Mappings.Vestibular;
 using Redacao.Domain.Entidades.Avaliacao;
 using Redacao.Domain.Entidades.Base;
+using Redacao.Domain.Entidades.Categoria;
 using Redacao.Domain.Entidades.Documento;
 using Redacao.Domain.Entidades.Notificacao;
 using Redacao.Domain.Entidades.Organizacao;
 using Redacao.Domain.Entidades.Redacao;
+using Redacao.Domain.Entidades.Suporte.Sugestao;
 using Redacao.Domain.Entidades.Usuario;
 using Redacao.Domain.Entidades.Vestibular;
 using System;
@@ -50,6 +54,8 @@ namespace Redacao.Data.Context
             builder.ApplyConfiguration(new AvaliacaoRedacaoPerguntaRespostaMapping());
             builder.ApplyConfiguration(new AvaliacaoRedacaoRespostaAlunoMapping());
             builder.ApplyConfiguration(new NotificacaoMapping());
+            builder.ApplyConfiguration(new CategoriaMapping());
+            builder.ApplyConfiguration(new SugestaoMapping());
             
             base.OnModelCreating(builder);
         }
@@ -68,5 +74,7 @@ namespace Redacao.Data.Context
         public virtual DbSet<UsuarioOrganizacao> UsuariosOrganizacoes { get; set; }
         public virtual DbSet<VestibularTema> VestibularesTemas { get; set; }
         public virtual DbSet<NotificacaoNotificacao> Notificacoes { get; set; }
+        public virtual DbSet<CategoriaCategoria> Categorias { get; set; }
+        public virtual DbSet<SugestaoSugestao> Sugestoes { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Redacao.Application.Commands.Vestibular;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Vestibular;
@@ -18,10 +19,13 @@ namespace Redacao.Application.Handlers.Vestibular
     public class VincularVestibularesAoTemaCommandHandler : IRequestHandler<VincularVestibularesAoTemaCommand, ResponseViewModel<string>>
     {
         private readonly IRepositorioGenerico<VestibularTema> _repositorioVestibularTema;
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
 
-        public VincularVestibularesAoTemaCommandHandler(IRepositorioGenerico<VestibularTema> repositorioVestibularTema)
+        public VincularVestibularesAoTemaCommandHandler(IRepositorioGenerico<VestibularTema> repositorioVestibularTema,
+                                                        UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioVestibularTema = repositorioVestibularTema;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<string>> Handle(VincularVestibularesAoTemaCommand request, CancellationToken cancellationToken)
@@ -37,7 +41,7 @@ namespace Redacao.Application.Handlers.Vestibular
 
                 foreach (var vestibularId in request.VestibularesIds.Distinct())
                 {
-                    var vestibularTema = new VestibularTema(request.TemaId, vestibularId, 0, request.UsuarioLogado.Id, DateTime.UtcNow, null, true);
+                    var vestibularTema = new VestibularTema(request.TemaId, vestibularId, 0, _usuarioLogado.Id, DateTime.UtcNow, null, true);
                     var vestibularTemaValidacao = await vestibularTema.ValidaObjeto(vestibularTema);
 
                     if (vestibularTemaValidacao.IsValid)

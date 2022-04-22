@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Redacao.Application.Commands.Redacao;
 using Redacao.Application.DTOs;
+using Redacao.Application.DTOs.Usuario.Identity;
 using Redacao.Application.Exceptions;
 using Redacao.Application.Helpers;
 using Redacao.Domain.Entidades.Redacao;
@@ -18,10 +19,13 @@ namespace Redacao.Application.Handlers.Redacao
     public class ProfessorGarantirCorrecaoCommandHandler : IRequestHandler<ProfessorGarantirCorrecaoCommand, ResponseViewModel<string>>
     {
         private readonly IRepositorioGenerico<RedacaoRedacao> _repositorioRedacao;
+        private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
 
-        public ProfessorGarantirCorrecaoCommandHandler(IRepositorioGenerico<RedacaoRedacao> repositorioRedacao)
+        public ProfessorGarantirCorrecaoCommandHandler(IRepositorioGenerico<RedacaoRedacao> repositorioRedacao,
+                                                       UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioRedacao = repositorioRedacao;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<string>> Handle(ProfessorGarantirCorrecaoCommand request, CancellationToken cancellationToken)
@@ -38,7 +42,7 @@ namespace Redacao.Application.Handlers.Redacao
                     return ResponseReturnHelper<string>.GerarRetorno(HttpStatusCode.BadRequest, "A redação não pode ser garantida por este professor, pois já se encontra em outro status :/ Tente novamente.");
 
                 redacao = new RedacaoRedacao(redacao.Descricao, redacao.TemaRedacaoId, redacao.VestibularId,
-                                             redacao.UsuarioAlunoId, request.UsuarioLogado.Id, redacao.TipoRedacao,
+                                             redacao.UsuarioAlunoId, _usuarioLogado.Id, redacao.TipoRedacao,
                                              StatusRedacaoEnum.COM_O_PROFESSOR, redacao.Id, redacao.UsuarioCriadorId,
                                              redacao.CriadoEm, DateTime.UtcNow, true);
 

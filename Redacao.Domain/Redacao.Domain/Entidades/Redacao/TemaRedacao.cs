@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Redacao.Domain.Entidades.Base;
+using Redacao.Domain.Entidades.Categoria;
 using Redacao.Domain.Entidades.Documento;
 using Redacao.Domain.Entidades.Organizacao;
 using Redacao.Domain.Entidades.Vestibular;
@@ -18,7 +19,7 @@ namespace Redacao.Domain.Entidades.Redacao
 
         }
 
-        public TemaRedacao(string nome, string descricao, Int32 id, 
+        public TemaRedacao(string nome, string descricao, Int32 categoriaId ,Int32 id, 
                            Int32 usuarioCriadorId, DateTime criadoEm,
                            DateTime? modificadoEm, bool ativo)
         {
@@ -29,12 +30,16 @@ namespace Redacao.Domain.Entidades.Redacao
             this.SetarCriadoEm(criadoEm);
             this.SetarModificadoEm(modificadoEm);
             this.SetarAtivo(ativo);
+            this.SetarCategoria(categoriaId);
         }
 
         public string Nome { get; private set; }
 
         public string Descricao { get; private set; }
 
+        public Int32 CategoriaId { get; private set; }
+
+        public virtual CategoriaCategoria Categoria { get; private set; } 
 
         public virtual ICollection<RedacaoRedacao> Redacoes { get; private set; }
 
@@ -56,6 +61,11 @@ namespace Redacao.Domain.Entidades.Redacao
         private void SetarDescricao(string descricao)
         {
             this.Descricao = descricao;
+        }
+
+        private void SetarCategoria(Int32 categoriaId)
+        {
+            this.CategoriaId = categoriaId;
         }
     }
 }
