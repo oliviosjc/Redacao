@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Redacao.Domain.Repositorios
 {
-    public interface IRepositorioGenerico<TEntity> : IDisposable where TEntity : EntidadeBase
+    public interface IRepositorioGenerico<TEntity> : IDisposable where TEntity : EntidadeBase 
     {
         Task Delete(TEntity entity);
         Task Delete(List<TEntity> entity);
