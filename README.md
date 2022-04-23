@@ -72,7 +72,7 @@ Este repositório foi criado com o objetivo de construir uma aplicação resumin
 
 **Mock**
 
-**Serviços de Núvem**
+**Serviços de Nuvem**
 -
 
 **Azure Service Bus**
