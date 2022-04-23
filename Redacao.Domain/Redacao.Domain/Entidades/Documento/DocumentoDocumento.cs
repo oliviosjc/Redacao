@@ -2,6 +2,7 @@
 using Redacao.Domain.Entidades.Base;
 using Redacao.Domain.Entidades.Organizacao;
 using Redacao.Domain.Entidades.Redacao;
+using Redacao.Domain.Enums.Documento;
 using Redacao.Domain.Validacoes.Documento;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,9 @@ namespace Redacao.Domain.Entidades.Documento
 
         }
 
-        public DocumentoDocumento(string nomeOriginal, string nomeInternoAzure ,
-                                  string extensao, string tamanho, 
-                                  Int32? temaId, Int32? redacaoId, Int32 id, 
+        public DocumentoDocumento(string nomeOriginal, string nomeInternoAzure,
+                                  string extensao, string tamanho, TipoDocumentoEnum tipo,
+                                  Int32 chaveValor, Int32 id, 
                                   Int32 usuarioCriadorId, DateTime criadoEm,
                                   DateTime? modificadoEm, bool ativo)
         {
@@ -27,13 +28,13 @@ namespace Redacao.Domain.Entidades.Documento
             this.SetarNomeInternoAzure(nomeInternoAzure);
             this.SetarExtensao(extensao);
             this.SetarTamanho(tamanho);
-            this.SetarTemaId(temaId);
-            this.SetarRedacaoId(redacaoId);
             this.SetarId(id);
             this.SetarUsuarioCriadorId(usuarioCriadorId);
             this.SetarCriadoEm(criadoEm);
             this.SetarModificadoEm(modificadoEm);
             this.SetarAtivo(ativo);
+            this.SetarChaveValor(chaveValor);
+            this.SetarTipoDocumento(tipo);
         }
 
         public string NomeOriginal { get; private set; }
@@ -44,42 +45,38 @@ namespace Redacao.Domain.Entidades.Documento
 
         public string Tamanho { get; private set; }
 
-        public Int32? RedacaoId { get; private set; }
+        public Int32 ChaveValor { get; private set; }
 
-        public Int32? TemaId { get; private set; }
+        public TipoDocumentoEnum Tipo { get; private set; }
 
-        public virtual RedacaoRedacao Redacao { get; private set; }
-
-        public virtual TemaRedacao Tema { get; private set; }
-
-        public void SetarNomeOriginal(string nomeOriginal)
+        private void SetarNomeOriginal(string nomeOriginal)
         {
             this.NomeOriginal = nomeOriginal;
         }
 
-        public void SetarNomeInternoAzure(string nomeInternoAzure)
+        private void SetarNomeInternoAzure(string nomeInternoAzure)
         {
             this.NomeInternoAzure = nomeInternoAzure;
         }
 
-        public void SetarExtensao(string extensao)
+        private void SetarExtensao(string extensao)
         {
             this.Extensao = extensao;
         }
 
-        public void SetarTamanho(string tamanho)
+        private void SetarTamanho(string tamanho)
         {
             this.Tamanho = tamanho;
         }
 
-        public void SetarTemaId(Int32? temaId)
+        private void SetarChaveValor(Int32 chaveValor)
         {
-            this.TemaId = temaId;
+            this.ChaveValor = chaveValor;
         }
 
-        public void SetarRedacaoId(Int32? redacaoId)
+        private void SetarTipoDocumento(TipoDocumentoEnum tipo)
         {
-            this.RedacaoId = redacaoId;
+            this.Tipo = tipo;
         }
 
         public async Task<ValidationResult> ValidaObjeto(DocumentoDocumento objeto)

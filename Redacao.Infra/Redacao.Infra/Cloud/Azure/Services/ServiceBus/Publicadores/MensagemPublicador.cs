@@ -1,4 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
+using Microsoft.Azure.ServiceBus;
 using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Enums;
 using Redacao.Infra.Configuracao;
 using System;
@@ -16,28 +17,15 @@ namespace Redacao.Infra.Cloud.Azure.Services.ServiceBus.Publicador
             _configuracaoFila = configuracaoFila;
         }
 
-        public async Task PublicarMensagem(string message, RedacaoFilaEnum filaEnum)
+        public async Task Publicar(string mensagem, QueueClient queueClient)
         {
             try
             {
-                if(filaEnum is RedacaoFilaEnum.ATUALIZAR_USUARIO_CORRECAO_DISPONIVEL)
-                    await Executar(message, _configuracaoFila.Conexao, _configuracaoFila.NomeFilaUsuarioCorrecaoDisponivel);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        private async Task Executar(string m, string conexao, string nomeFila)
-        {
-            try
-            {
-                await using (ServiceBusClient client = new ServiceBusClient(conexao))
+                await using (ServiceBusClient client = new ServiceBusClient(_configuracaoFila.Conexao))
                 {
-                    ServiceBusSender sender = client.CreateSender(nomeFila);
+                    ServiceBusSender sender = client.CreateSender(queueClient.QueueName);
 
-                    ServiceBusMessage message = new ServiceBusMessage(m);
+                    ServiceBusMessage message = new ServiceBusMessage(mensagem);
 
                     await sender.SendMessageAsync(message);
                 }

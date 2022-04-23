@@ -23,7 +23,11 @@ namespace Redacao.Data.Repositorios.Dapper
         {
             using var conexao = new SqlConnection(_conexao);
 
+            await conexao.OpenAsync();
+
             var redacoes = await conexao.QueryAsync<RedacaoRedacao>("SELECT * FROM dbo.Redacoes");
+
+            await conexao.CloseAsync();
 
             return redacoes;
         }

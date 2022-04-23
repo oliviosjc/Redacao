@@ -35,7 +35,7 @@ namespace Redacao.Application.Handlers.Redacao
         {
             try
             {
-                var tema = new TemaRedacao(request.Nome, request.Descricao, request.CategoriaId, 0, 
+                var tema = new TemaRedacao(request.Nome, request.Descricao, request.CategoriaId, 0,0, 0, 
                                            _usuarioLogado.Id, DateTime.UtcNow, null, true);
 
                 var temaValido = await tema.ValidaObjeto(tema);

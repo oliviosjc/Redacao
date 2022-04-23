@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Redacao.API.Controllers.Base;
 using Redacao.Application.Commands.Usuario;
+using Redacao.Application.DTOs;
+using Redacao.Application.Queries.Suporte.Sugestao;
 using Redacao.Domain.Entidades.Usuario;
 using System;
 using System.Collections.Generic;
@@ -32,6 +34,23 @@ namespace Redacao.API.Controllers.Usuario
             {
                 command.UsuarioId = id;
                 var resultado = await _mediator.Send(command);
+
+                return await RetornoBase(resultado);
+            }
+            catch (Exception ex)
+            {
+                return await RetornoBase<UsuarioUsuario>(ex);
+            }
+        }
+
+        [HttpGet("sugestoes")]
+        public async Task<IActionResult> BuscarSugestoes([FromQuery] RequestPaginacao paginacao)
+        {
+            try
+            {
+                BuscarMinhasSugestoesQuery query = new BuscarMinhasSugestoesQuery(paginacao);
+
+                var resultado = await _mediator.Send(query);
 
                 return await RetornoBase(resultado);
             }

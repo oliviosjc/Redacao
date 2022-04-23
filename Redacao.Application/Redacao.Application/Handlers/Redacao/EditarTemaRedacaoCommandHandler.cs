@@ -33,7 +33,7 @@ namespace Redacao.Application.Handlers.Redacao
                 if (tema is null)
                     return ResponseReturnHelper<string>.GerarRetorno(HttpStatusCode.BadRequest, "O tema que deseja editar não existe ou você não possui direitos para acessa-la :/");
 
-                tema = new TemaRedacao(request.Nome, request.Descricao, request.CategoriaId ,request.Id, tema.UsuarioCriadorId ,tema.CriadoEm, DateTime.UtcNow, true);
+                tema = new TemaRedacao(request.Nome, request.Descricao, request.CategoriaId, 0,0 ,request.Id, tema.UsuarioCriadorId ,tema.CriadoEm, DateTime.UtcNow, true);
 
                 var temaValido = await tema.ValidaObjeto(tema);
 

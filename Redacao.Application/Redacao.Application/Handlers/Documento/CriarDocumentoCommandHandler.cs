@@ -42,7 +42,7 @@ namespace Redacao.Application.Handlers.Documento
                 var documentoCloud = await _azureBlobStorageService.CriarDocumento(request.Arquivo);
 
                 var documento = new DocumentoDocumento(documentoCloud.NomeArquivo, documentoCloud.NomeArquivoCloud, documentoCloud.Extensao, 
-                                                       documentoCloud.Tamanho, request.TemaId, request.RedacaoId, 0, _usuarioLogado.Id, 
+                                                       documentoCloud.Tamanho, request.Tipo, request.ChaveValor , 0, _usuarioLogado.Id, 
                                                        DateTime.Now, null, true);
 
                 var documentoValido = await documento.ValidaObjeto(documento);

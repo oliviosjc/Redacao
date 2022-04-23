@@ -14,8 +14,7 @@ namespace Redacao.Domain.Validacoes.Documento
             RuleFor(r => r.NomeInternoAzure).NotNull().NotEmpty().MaximumLength(255);
             RuleFor(r => r.Extensao).NotNull().NotEmpty().MaximumLength(8);
             RuleFor(r => r.Tamanho).NotNull().NotEmpty().MaximumLength(8);
-            RuleFor(r => r.RedacaoId).NotNull().NotEmpty().When(wh => wh.TemaId is null);
-            RuleFor(r => r.TemaId).NotNull().NotEmpty().When(wh => wh.RedacaoId is null);
+            RuleFor(r => r.ChaveValor).NotNull().NotEmpty();
         }
     }
 }

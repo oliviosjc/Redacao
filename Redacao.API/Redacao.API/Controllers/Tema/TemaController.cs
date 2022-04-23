@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Redacao.API.Controllers.Base;
 using Redacao.Application.Commands;
+using Redacao.Application.Commands.Documento;
 using Redacao.Application.Commands.Redacao;
 using Redacao.Application.Commands.Vestibular;
 using Redacao.Application.DTOs;
 using Redacao.Application.Queries.Redacao;
 using Redacao.Domain.Entidades.Redacao;
+using Redacao.Domain.Enums.Documento;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +65,7 @@ namespace Redacao.API.Controllers.Tema
         {
             try
             {
-                InserirDocumentoTemaCommand command = new InserirDocumentoTemaCommand(id, arquivo);
+                CriarDocumentoCommand command = new CriarDocumentoCommand(arquivo, id, TipoDocumentoEnum.TEMA);
 
                 var resultado = await _mediator.Send(command);
 

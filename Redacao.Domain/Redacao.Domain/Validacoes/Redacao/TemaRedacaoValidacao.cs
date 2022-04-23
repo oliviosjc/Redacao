@@ -12,6 +12,8 @@ namespace Redacao.Domain.Validacoes.Redacao
         {
             RuleFor(r => r.Nome).NotEmpty().NotNull().MaximumLength(255);
             RuleFor(r => r.CategoriaId).NotNull().NotEmpty();
+            RuleFor(r => r.QuantidadeDeslikes).NotNull().NotEmpty();
+            RuleFor(r => r.QuantidadeLikes).NotNull().NotEmpty();
         }
     }
 }

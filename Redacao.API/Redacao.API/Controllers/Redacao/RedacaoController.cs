@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Redacao.API.Controllers.Base;
+using Redacao.Application.Commands.Documento;
 using Redacao.Application.Commands.Redacao;
 using Redacao.Application.DTOs;
 using Redacao.Application.Handlers.Redacao;
 using Redacao.Application.Queries.Redacao;
 using Redacao.Domain.Entidades.Redacao;
+using Redacao.Domain.Enums.Documento;
 using Redacao.Domain.Repositorios.Dapper;
 using Redacao.Infra.Socket.SignalR.Redacao;
 using System;
@@ -160,6 +162,23 @@ namespace Redacao.API.Controllers.Redacao
             var redacoes = await _redacaoRepositorio.Buscar();
 
             return Ok(redacoes);
+        }
+
+        [HttpPost("{id}/documento")]
+        public async Task<IActionResult> InserirDocumento(Int32 id, IFormFile arquivo)
+        {
+            try
+            {
+                CriarDocumentoCommand command = new CriarDocumentoCommand(arquivo, id, TipoDocumentoEnum.REDACAO);
+
+                var resultado = await _mediator.Send(command);
+
+                return await RetornoBase(resultado);
+            }
+            catch (Exception ex)
+            {
+                return await RetornoBase<RedacaoRedacao>(ex);
+            }
         }
     }
 }

@@ -42,5 +42,9 @@
     <ProjectReference Include="..\..\Redacao.Data\Redacao.Data\Redacao.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Suporte\Chamado\" />
+  </ItemGroup>
+
 
 </Project>

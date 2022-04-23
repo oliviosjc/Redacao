@@ -13,6 +13,10 @@ namespace Redacao.Data.Mappings.Documento
         {
             builder.ToTable("Documentos");
 
+            builder.HasIndex(i => i.ChaveValor);
+
+            builder.HasIndex(i => i.Tipo);
+
             builder.Property(p => p.NomeOriginal).IsRequired().HasMaxLength(255);
 
             builder.Property(p => p.NomeInternoAzure).IsRequired().HasMaxLength(255);
@@ -21,15 +25,9 @@ namespace Redacao.Data.Mappings.Documento
 
             builder.Property(p => p.Tamanho).IsRequired().HasMaxLength(8);
 
-            builder.HasOne(d => d.Redacao)
-                .WithMany(r => r.DocumentosRedacao)
-                .HasForeignKey(f => f.RedacaoId)
-                .HasConstraintName("FK__Documento__Redacao");
+            builder.Property(p => p.ChaveValor).IsRequired().HasMaxLength(8);
 
-            builder.HasOne(d => d.Tema)
-                .WithMany(r => r.DocumentosTema)
-                .HasForeignKey(f => f.TemaId)
-                .HasConstraintName("FK__Documento__Tema");
+            builder.Property(p => p.Tipo).IsRequired();
         }
     }
 }

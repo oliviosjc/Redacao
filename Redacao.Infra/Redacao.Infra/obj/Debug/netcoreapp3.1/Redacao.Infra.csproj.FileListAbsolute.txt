@@ -1,12 +1,12 @@
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\bin\Debug\netcoreapp3.1\Redacao.Infra.deps.json
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\bin\Debug\netcoreapp3.1\Redacao.Infra.dll
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\bin\Debug\netcoreapp3.1\Redacao.Infra.pdb
+C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\bin\Debug\netcoreapp3.1\Redacao.Domain.dll
+C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\bin\Debug\netcoreapp3.1\Redacao.Domain.pdb
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\obj\Debug\netcoreapp3.1\Redacao.Infra.csprojAssemblyReference.cache
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\obj\Debug\netcoreapp3.1\Redacao.Infra.AssemblyInfoInputs.cache
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\obj\Debug\netcoreapp3.1\Redacao.Infra.AssemblyInfo.cs
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\obj\Debug\netcoreapp3.1\Redacao.Infra.csproj.CoreCompileInputs.cache
+C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\obj\Debug\netcoreapp3.1\Redacao.Infra.csproj.CopyComplete
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\obj\Debug\netcoreapp3.1\Redacao.Infra.dll
 C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\obj\Debug\netcoreapp3.1\Redacao.Infra.pdb
-C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\bin\Debug\netcoreapp3.1\Redacao.Domain.dll
-C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\bin\Debug\netcoreapp3.1\Redacao.Domain.pdb
-C:\Users\olivi\source\repos\Redacao\Redacao.Infra\Redacao.Infra\obj\Debug\netcoreapp3.1\Redacao.Infra.csproj.CopyComplete

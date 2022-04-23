@@ -20,7 +20,6 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
     public class SugestaoController : BaseController<SugestaoSugestao>
     {
         private readonly IMediator _mediator;
-
         public SugestaoController(IMediator mediator,
                                   ILogger<SugestaoSugestao> logger) : base(logger)
         {
@@ -28,7 +27,7 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
         }
 
         [HttpPost]
-        public async Task<IActionResult> Criar([FromBody] CriarSugestaoCommand command)
+        public async Task<IActionResult> Criar(CriarSugestaoCommand command)
         {
             try
             {
@@ -43,7 +42,7 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
         }
 
         [HttpPut]
-        public async Task<IActionResult> Editar([FromBody] EditarSugestaoCommand command)
+        public async Task<IActionResult> Editar(EditarSugestaoCommand command)
         {
             try
             {
@@ -57,31 +56,12 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
             }
         }
 
-        [HttpGet("minhas-sugestoes")]
-        public async Task<IActionResult> BuscarMinhasSugestoes([FromQuery] RequestPaginacao paginacao)
+        [HttpPost("responder")]
+        public async Task<IActionResult> Responder(ResponderSugestaoCommand command)
         {
             try
             {
-                BuscarMinhasSugestoesQuery query = new BuscarMinhasSugestoesQuery(paginacao);
-
-                var resultado = await _mediator.Send(query);
-
-                return await RetornoBase(resultado);
-            }
-            catch (Exception ex)
-            {
-                return await RetornoBase<SugestaoSugestao>(ex);
-            }
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> BuscarSugestaoPorId(Int32 id)
-        {
-            try
-            {
-                BuscarSugestaoPorIdQuery query = new BuscarSugestaoPorIdQuery(id);
-
-                var resultado = await _mediator.Send(query);
+                var resultado = await _mediator.Send(command);
 
                 return await RetornoBase(resultado);
             }
@@ -92,7 +72,7 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
         }
 
         [HttpGet]
-        public async Task<IActionResult> BuscarTodasSugestoes([FromQuery] RequestPaginacao paginacao)
+        public async Task<IActionResult> Buscar([FromQuery] RequestPaginacao paginacao)
         {
             try
             {
@@ -108,12 +88,14 @@ namespace Redacao.API.Controllers.Suporte.Sugestao
             }
         }
 
-        [HttpPost("responder")]
-        public async Task<IActionResult> ResponderSugestao([FromBody] ResponderSugestaoCommand command)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> BuscarPorId(Int32 id)
         {
             try
             {
-                var resultado = await _mediator.Send(command);
+                BuscarSugestaoPorIdQuery query = new BuscarSugestaoPorIdQuery(id);
+
+                var resultado = await _mediator.Send(query);
 
                 return await RetornoBase(resultado);
             }

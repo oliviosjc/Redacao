@@ -16,12 +16,16 @@ using Redacao.Application.Handlers.Vestibular;
 using Redacao.Application.Notifications.Usuario.Identity;
 using Redacao.Data.Repositorios;
 using Redacao.Data.Repositorios.Dapper;
+using Redacao.Data.Repositorios.Dapper.TemaRedacao;
 using Redacao.Domain.Repositorios;
 using Redacao.Domain.Repositorios.Dapper;
+using Redacao.Domain.Repositorios.Dapper.TemaRedacao;
 using Redacao.Infra.Cloud.Azure.Services;
 using Redacao.Infra.Cloud.Azure.Services.Interfaces;
 using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Cliente.Model;
+using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Clientes;
 using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Consumidor;
+using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Consumidores;
 using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Publicador;
 using Redacao.Infra.Configuracao;
 using Redacao.Infra.Email.Services;
@@ -35,6 +39,7 @@ namespace Redacao.API.Helper
             // REPOSITÓRIO
             services.AddTransient(typeof(IRepositorioGenerico<>), typeof(RepositorioGenerico<>));
             services.AddTransient<IRedacaoRepositorio, RedacaoRepositorio>();
+            services.AddTransient<ITemaRedacaoRepositorio, TemaRedacaoRepositorio>();
 
             // HANDLERS
             services.AddMediatR(typeof(Startup));
@@ -63,7 +68,6 @@ namespace Redacao.API.Helper
             services.AddMediatR(typeof(CriarTemaRedacaoCommandHandler));
             services.AddMediatR(typeof(EditarRedacaoCommandHandler));
             services.AddMediatR(typeof(EditarTemaRedacaoCommandHandler));
-            services.AddMediatR(typeof(InserirDocumentoTemaCommandHandler));
             services.AddMediatR(typeof(ProfessorGarantirCorrecaoCommandHandler));
 
             services.AddMediatR(typeof(CriarSugestaoCommandHandler));
@@ -109,8 +113,12 @@ namespace Redacao.API.Helper
             services.AddTransient<IMensagemPublicador, MensagemPublicador>();
             ConfiguracaoFila configuracaoFila = configuration.GetSection("Azure:ConfiguracaoFila").Get<ConfiguracaoFila>();
             services.AddSingleton(configuracaoFila);
+
             services.AddTransient(clienteFileUsuarioCorrecaoDisponivel => new ClienteFilaUsuarioCorrecaoDisponivel(configuration.GetValue<string>("Azure:ConfiguracaoFila:Conexao"), configuration.GetValue<string>("Azure:ConfiguracaoFila:NomeFilaUsuarioCorrecaoDisponivel"), ReceiveMode.PeekLock));
             services.AddHostedService<ConsumidorFilaUsuarioCorrecaoDisponivel>();
+
+            services.AddTransient(clienteFilaUsuarioCurtidas => new ClienteFilaUsuarioCurtidas(configuration.GetValue<string>("Azure:ConfiguracaoFila:Conexao"), configuration.GetValue<string>("Azure:ConfiguracaoFila:NomeFilaUsuarioCurtidas"), ReceiveMode.PeekLock));
+            services.AddHostedService<ConsumidorFilaUsuarioCurtidas>();
 
             //
             services.AddHttpContextAccessor();

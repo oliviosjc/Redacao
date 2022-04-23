@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Newtonsoft.Json;
 using Redacao.Application.Notifications.Redacao;
+using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Cliente.Model;
 using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Enums;
 using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Publicador;
 using System;
@@ -14,10 +15,13 @@ namespace Redacao.Application.Handlers.Redacao
     public class AlunoConcluirRedacaoNotificationHandler : INotificationHandler<AlunoConcluirRedacaoNotification>
     {
         private readonly IMensagemPublicador _mensagemPublicador;
+        private readonly ClienteFilaUsuarioCorrecaoDisponivel _queueClient;
 
-        public AlunoConcluirRedacaoNotificationHandler(IMensagemPublicador mensagemPublicador)
+        public AlunoConcluirRedacaoNotificationHandler(IMensagemPublicador mensagemPublicador,
+                                                       ClienteFilaUsuarioCorrecaoDisponivel queueClient)
         {
             _mensagemPublicador = mensagemPublicador;
+            _queueClient = queueClient;
         }
 
         public async Task Handle(AlunoConcluirRedacaoNotification notification, CancellationToken cancellationToken)
@@ -25,7 +29,8 @@ namespace Redacao.Application.Handlers.Redacao
             try
             {
                 string mensagem = JsonConvert.SerializeObject(notification.Model);
-                await _mensagemPublicador.PublicarMensagem(mensagem, RedacaoFilaEnum.ATUALIZAR_USUARIO_CORRECAO_DISPONIVEL);
+
+                await _mensagemPublicador.Publicar(mensagem, _queueClient);
             }
             catch(Exception ex)
             {
