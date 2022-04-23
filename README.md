@@ -15,8 +15,6 @@ Este repositório foi criado com o objetivo de construir uma aplicação resumin
 **Linguagem**  
 - 
 
-**ASP.NET Core**
-
 **C#**
 
 **Design Patterns**  
@@ -25,14 +23,13 @@ Este repositório foi criado com o objetivo de construir uma aplicação resumin
 
 **Repository Pattern**  
 
+**CQRS com Mediator**
+
 **Unit of Work**
 
 **RESTful**  
 
 **SOLID**  
-
-**CQRS com Mediator**
-
 
 **Base de dados**  
 - 
@@ -49,6 +46,8 @@ Este repositório foi criado com o objetivo de construir uma aplicação resumin
 **Entity Framework Core**
 
 **Identity Core**
+
+**ASP.NET Core**
 
 **Dapper**
 
