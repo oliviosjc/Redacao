@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Redacao.Data.Context;
 
 namespace Redacao.Data.Migrations
 {
     [DbContext(typeof(RedacaoSQLContext))]
-    partial class RedacaoSQLContextModelSnapshot : ModelSnapshot
+    [Migration("20220423130109_pijaowiddja")]
+    partial class pijaowiddja
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
