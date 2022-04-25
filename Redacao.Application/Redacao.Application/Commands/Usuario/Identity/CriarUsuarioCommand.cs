@@ -8,6 +8,11 @@ namespace Redacao.Application.Commands.Usuario.Identity
 {
     public class CriarUsuarioCommand : IRequest<ResponseViewModel<string>>
     {
+        public CriarUsuarioCommand()
+        {
+
+        }
+
         public string Nome { get; set; }
 
         public string Email { get; set; }

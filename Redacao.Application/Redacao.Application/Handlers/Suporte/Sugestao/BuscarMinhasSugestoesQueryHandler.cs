@@ -25,6 +25,7 @@ namespace Redacao.Application.Handlers.Suporte.Sugestao
                                                  UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioSugestao = repositorioSugestao;
+            _usuarioLogado = usuarioLogado;
         }
 
         public async Task<ResponseViewModel<List<SugestaoSugestao>>> Handle(BuscarMinhasSugestoesQuery request, CancellationToken cancellationToken)

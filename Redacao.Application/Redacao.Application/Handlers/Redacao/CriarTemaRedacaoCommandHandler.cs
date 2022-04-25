@@ -20,14 +20,11 @@ namespace Redacao.Application.Handlers.Redacao
     public class CriarTemaRedacaoCommandHandler : IRequestHandler<CriarTemaRedacaoCommand, ResponseViewModel<string>>
     {
         private readonly IRepositorioGenerico<TemaRedacao> _repositorioTemaRedacao;
-        private readonly IRepositorioGenerico<VestibularVestibular> _repositorioVestibular;
         private readonly UsuarioLogadoMiddlewareModel _usuarioLogado;
         public CriarTemaRedacaoCommandHandler(IRepositorioGenerico<TemaRedacao> repositorioTemaRedacao,
-                                              IRepositorioGenerico<VestibularVestibular> repositorioVestibular,
                                               UsuarioLogadoMiddlewareModel usuarioLogado)
         {
             _repositorioTemaRedacao = repositorioTemaRedacao;
-            _repositorioVestibular = repositorioVestibular;
             _usuarioLogado = usuarioLogado;
         }
 

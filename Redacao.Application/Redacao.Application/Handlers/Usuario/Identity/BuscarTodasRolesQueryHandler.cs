@@ -24,24 +24,24 @@ namespace Redacao.Application.Handlers.Usuario.Identity
             _roleManager = roleManager;
         }
 
-        public async Task<ResponseViewModel<List<Role>>> Handle(BuscarTodasRolesQuery request, CancellationToken cancellationToken)
+        public Task<ResponseViewModel<List<Role>>> Handle(BuscarTodasRolesQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 var roles = _roleManager.Roles.ToList();
 
                 if(roles.Any())
-                    return ResponseReturnHelper<List<Role>>.GerarRetorno(HttpStatusCode.NoContent, "Não foi encontrada nenhuma role na base de dados :/ Tente novamente.");
+                    return Task.FromResult(ResponseReturnHelper<List<Role>>.GerarRetorno(HttpStatusCode.NoContent, "Não foi encontrada nenhuma role na base de dados :/ Tente novamente."));
 
-                return ResponseReturnHelper<List<Role>>.GerarRetorno(HttpStatusCode.OK, roles, "As roles foram encontradas com sucesso.");
+                return Task.FromResult(ResponseReturnHelper<List<Role>>.GerarRetorno(HttpStatusCode.OK, roles, "As roles foram encontradas com sucesso."));
             }
             catch (HandlerException ex)
             {
-                return ResponseReturnHelper<List<Role>>.GerarRetorno(ex);
+                return Task.FromResult(ResponseReturnHelper<List<Role>>.GerarRetorno(ex));
             }
             catch (SQLException ex)
             {
-                return ResponseReturnHelper<List<Role>>.GerarRetorno(ex);
+                return Task.FromResult(ResponseReturnHelper<List<Role>>.GerarRetorno(ex));
             }
         }
     }

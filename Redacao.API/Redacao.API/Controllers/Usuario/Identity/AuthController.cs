@@ -41,6 +41,28 @@ namespace Redacao.API.Controllers.Usuario.Identity
             }
         }
 
+        [HttpPost("confirmar-registro")]
+        public async Task<IActionResult> ConfirmarRegistro([FromBody] ConfirmarRegistroUsuarioCommand command)
+        {
+            try
+            {
+                try
+                {
+                    var resultado = await _mediator.Send(command);
+
+                    return await RetornoBase(resultado);
+                }
+                catch (Exception ex)
+                {
+                    return await RetornoBase<UsuarioUsuario>(ex);
+                }
+            }
+            catch(Exception ex)
+            {
+                return await RetornoBase<UsuarioUsuario>(ex);
+            }
+        }
+
         [HttpPost("logar")]
         public async Task<IActionResult> Logar([FromBody] RealizarLoginUsuarioCommand command)
         {

@@ -28,5 +28,5 @@ namespace Redacao.API
                 {
                     webBuilder.UseStartup<Startup>().UseSerilog();
                 });
-    }
+    } 
 }

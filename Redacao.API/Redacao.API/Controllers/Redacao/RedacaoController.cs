@@ -28,19 +28,15 @@ namespace Redacao.API.Controllers.Redacao
     [ApiController]
     public class RedacaoController : BaseController<RedacaoRedacao>
     {
-        private static ConcurrentBag<StreamWriter> _clients = new ConcurrentBag<StreamWriter>();
         private readonly IMediator _mediator;
-        private readonly IHubContext<RedacaoHub> _redacaoHub;
         private readonly IRedacaoRepositorio _redacaoRepositorio;
 
 
         public RedacaoController(IMediator mediator, 
                                  ILogger<RedacaoRedacao> logger,
-                                 IHubContext<RedacaoHub> redacaoHub,
                                  IRedacaoRepositorio redacaoRepositorio) : base(logger)
         {
             _mediator = mediator;
-            _redacaoHub = redacaoHub;
             _redacaoRepositorio = redacaoRepositorio;
         }
 

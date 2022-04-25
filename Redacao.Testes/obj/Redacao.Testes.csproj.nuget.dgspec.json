@@ -282,9 +282,21 @@
               "target": "Package",
               "version": "[7.7.0, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
             "Microsoft.Azure.ServiceBus": {
               "target": "Package",
               "version": "[5.2.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             },
             "WindowsAzure.Storage": {
               "target": "Package",
@@ -359,6 +371,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Bogus": {
+              "target": "Package",
+              "version": "[34.0.2, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[10.0.1, )"

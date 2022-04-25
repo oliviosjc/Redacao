@@ -28,6 +28,7 @@ using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Consumidor;
 using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Consumidores;
 using Redacao.Infra.Cloud.Azure.Services.ServiceBus.Publicador;
 using Redacao.Infra.Configuracao;
+using Redacao.Infra.Email.Models;
 using Redacao.Infra.Email.Services;
 
 namespace Redacao.API.Helper
@@ -91,6 +92,7 @@ namespace Redacao.API.Helper
             services.AddMediatR(typeof(ResetarSenhaCommandHandler));
             services.AddMediatR(typeof(SetarRolesUsuarioCommandHandler));
             services.AddMediatR(typeof(VincularOrganizacoesAUsuarioCommandHandler));
+            services.AddMediatR(typeof(ConfirmarRegistroUsuarioCommandHandler));
 
             services.AddMediatR(typeof(BuscarTodosVestibularesQueryHandler));
             services.AddMediatR(typeof(BuscarTodosVestibularesQueryHandler));
@@ -103,8 +105,6 @@ namespace Redacao.API.Helper
             services.AddMediatR(typeof(BuscarTodasNotificacoesQueryHandler));
             services.AddMediatR(typeof(BuscarNotificacaoPorIdQueryHandler));
             
-
-
             // SERVICES
             services.AddTransient<IAzureBlobStorageService, AzureBlobStorageService>();
             services.AddTransient<IEmailService, EmailService>();
@@ -119,6 +119,9 @@ namespace Redacao.API.Helper
 
             services.AddTransient(clienteFilaUsuarioCurtidas => new ClienteFilaUsuarioCurtidas(configuration.GetValue<string>("Azure:ConfiguracaoFila:Conexao"), configuration.GetValue<string>("Azure:ConfiguracaoFila:NomeFilaUsuarioCurtidas"), ReceiveMode.PeekLock));
             services.AddHostedService<ConsumidorFilaUsuarioCurtidas>();
+
+            // EMAIL
+            services.Configure<ConfiguracaoEmail>(configuration.GetSection("ConfiguracaoEmail"));
 
             //
             services.AddHttpContextAccessor();
