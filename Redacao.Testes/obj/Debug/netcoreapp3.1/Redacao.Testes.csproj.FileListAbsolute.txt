@@ -168,3 +168,8 @@ C:\Users\olivi\source\repos\Redacao\Redacao.Testes\obj\Debug\netcoreapp3.1\Redac
 C:\Users\olivi\source\repos\Redacao\Redacao.Testes\obj\Debug\netcoreapp3.1\Redacao.Testes.dll
 C:\Users\olivi\source\repos\Redacao\Redacao.Testes\obj\Debug\netcoreapp3.1\Redacao.Testes.pdb
 C:\Users\olivi\source\repos\Redacao\Redacao.Testes\obj\Debug\netcoreapp3.1\Redacao.Testes.genruntimeconfig.cache
+C:\Users\olivi\source\repos\Redacao\Redacao.Testes\bin\Debug\netcoreapp3.1\Bogus.dll
+C:\Users\olivi\source\repos\Redacao\Redacao.Testes\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\olivi\source\repos\Redacao\Redacao.Testes\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\olivi\source\repos\Redacao\Redacao.Testes\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\olivi\source\repos\Redacao\Redacao.Testes\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll

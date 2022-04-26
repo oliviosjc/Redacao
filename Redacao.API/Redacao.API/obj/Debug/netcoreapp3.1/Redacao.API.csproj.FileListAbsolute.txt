@@ -153,3 +153,6 @@ C:\Users\olivi\source\repos\Redacao\Redacao.API\Redacao.API\obj\Debug\netcoreapp
 C:\Users\olivi\source\repos\Redacao\Redacao.API\Redacao.API\obj\Debug\netcoreapp3.1\Redacao.API.pdb
 C:\Users\olivi\source\repos\Redacao\Redacao.API\Redacao.API\obj\Debug\netcoreapp3.1\Redacao.API.genruntimeconfig.cache
 C:\Users\olivi\source\repos\Redacao\Redacao.API\Redacao.API\obj\Debug\netcoreapp3.1\Redacao.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\olivi\source\repos\Redacao\Redacao.API\Redacao.API\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\olivi\source\repos\Redacao\Redacao.API\Redacao.API\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\olivi\source\repos\Redacao\Redacao.API\Redacao.API\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll

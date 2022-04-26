@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Moq" Version="4.17.2" />
@@ -22,12 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Avaliacao\" />
-    <Folder Include="Documento\" />
-    <Folder Include="Usuario\" />
-    <Folder Include="Vestibular\" />
-    <Folder Include="Redacao\" />
-    <Folder Include="Organizacao\" />
+    <Folder Include="Testes\Avaliacao\" />
+    <Folder Include="Testes\Documento\" />
+    <Folder Include="Testes\Vestibular\" />
+    <Folder Include="Testes\Redacao\" />
+    <Folder Include="Testes\Organizacao\" />
   </ItemGroup>
 
   <ItemGroup>
