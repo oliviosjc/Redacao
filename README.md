@@ -58,6 +58,8 @@ Este repositório foi criado com o objetivo de construir uma aplicação resumin
 
 **ASP.NET Core Healthchecks**
 
+**XUnit with Mock & Bogus**
+
 **Fluent Validation**
 
 **Swagger API**
@@ -67,10 +69,6 @@ Este repositório foi criado com o objetivo de construir uma aplicação resumin
 **SignalR**
 
 **Serilog**
-
-**XUnit**
-
-**Mock**
 
 **Serviços de Nuvem**
 -
